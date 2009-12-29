@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.timesgroup.sso.hibernate.mapping">
+
+    <class name="UserInvitation" table="itimesinvite">
+        <id name="id" column="id" unsaved-value="null">
+         <generator class="increment"/>
+        </id>
+        <property name="refereeUserId" column="s_usr_id_vc"/>
+        <property name="emailId" column="r_email"/>
+        <property name="hashCode" column="hscode"/>
+        <property name="status" column="status" length="11" type="java.lang.Integer" />
+        <property name="createdDate" type="timestamp" column="crt_dt"/>
+        <property name="flag" column="flag"/>
+        <property name="newUserId" column="r_usr_id_vc"/>
+    </class>
+</hibernate-mapping>

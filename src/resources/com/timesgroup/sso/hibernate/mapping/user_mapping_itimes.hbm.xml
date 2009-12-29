@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.timesgroup.sso.hibernate.mapping">
+
+	<class name="UserMapping" table="usermapping">
+		<id name="emailId" column="Emailid"></id>
+		<property name="userId" column="userid" />
+		<property name="credentialType" column="CredentialType" />
+		<property name="itimesId" column="itimesid" />
+		<property name="createdDate" column="CreatedDate" type="timestamp"/>
+	</class>
+</hibernate-mapping>

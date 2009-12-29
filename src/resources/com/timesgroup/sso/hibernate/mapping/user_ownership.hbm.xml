@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.timesgroup.sso.hibernate.mapping">
+
+    <class name="UserOwnership" table="USEROWNERSHIP">
+        <id name="user_id" column="USR_ID_VC">
+        </id>
+		<property name="twowheeler" column="TWOWHEELER"/>
+		<property name="fourwheeler" column="FOURWHEELER"/>
+		<property name="wmachine" column="WMACHINE"/>
+		<property name="computer" column="COMPUTER"/>
+		<property name="musicsystem" column="MUSICSYSTEM"/>
+		<property name="microwave" column="MICROWAVE"/>
+		<property name="cookingrange" column="COOKINGRANGE"/>
+		<property name="dishwasher" column="DISHWASHER"/>
+		<property name="cellphone" column="CELLPHONE"/>
+		<property name="a_c" column="A_C"/>
+		<property name="creditcard" column="CREDITCARD"/>
+		<property name="colortv" column="COLORTV"/>
+		<property name="grinder_juicer" column="GRINDER_JUICER"/>
+		<property name="fridge" column="FRIDGE"/>
+     </class>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.timesgroup.sso.hibernate.mapping">
+
+    <class name="UserInterest" table="USERINTEREST">
+        <id name="user_id" column="USR_ID_VC">
+        </id>
+		<property name="news" column="NEWS"/>
+		<property name="lifestyle" column="LIFESTYLE"/>
+		<property name="music_movies" column="MUSIC_MOVIES"/>
+		<property name="business_finance" column="BUSINESS_FINANCE"/>
+		<property name="computer_technology" column="COMPUTER_TECHNOLOGY"/>
+		<property name="shopping" column="SHOPPING"/>
+		<property name="travel" column="TRAVEL"/>
+		<property name="contest_freestuff" column="CONTEST_FREESTUFF"/>
+		<property name="toys_games" column="TOYS_GAMES"/>
+		<property name="spirituality" column="SPIRITUALITY"/>
+		<property name="auctions" column="AUCTIONS"/>
+		<property name="auto" column="AUTO"/>
+		<property name="health_beauty" column="HEALTH_BEAUTY"/>
+		<property name="sports" column="SPORTS"/>
+     </class>
+</hibernate-mapping>

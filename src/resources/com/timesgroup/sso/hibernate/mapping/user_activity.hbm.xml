@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.timesgroup.sso.hibernate.mapping">
+
+    <class name="UserActivity" table="USERACTIVITIES">  
+     <id name="activity_id" column="ACTIVITY_ID">
+     <generator class="sequence"></generator>
+        </id>  
+        <property name="user_id" column="USR_ID_VC"/>
+        <property name="siteid" column="SITEID"/>
+        <property name="visiteddate" type="timestamp"  column="VISITEDDATE"/>
+        <property name="ipaddress" column="IPADDRESS"/>
+        <property name="activity" column="ACTIVITY"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,207 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" >
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.timesgroup</groupId>
+	<artifactId>sso</artifactId>
+	<packaging>war</packaging>
+	<version>1</version>
+	<name>Single Sign On (SSO Project)</name>
+
+	<developers>
+		<developer>
+			<id>krishna</id>
+			<name>Krishna Kumar Singh</name>
+			<email>krishna.kumarsingh@indiatimes.co.in</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<organization>Times Internet Limited</organization>
+			<timezone>+5:30</timezone>
+		</developer>
+	</developers>
+	<repositories>
+		<repository>
+			<id>m2-ibiblio-rsync-repo</id>
+			<name>Maven2 ibiblio rsync Repository</name>
+			<url>http://people.apache.org/repo/m2-ibiblio-rsync-repository</url>
+		</repository>
+		<repository>
+			<id>localrepository</id>
+			<name>This is my local repository will we start using maven local proxy server</name>
+			<url>http://10.157.221.119</url>
+		</repository>
+		
+	</repositories>
+
+	<pluginRepositories>
+	    <pluginRepository>
+	        <id>tlc</id>
+	        <name>TLC Repository</name>
+	        <url>http://commons.ucalgary.ca/pub/m2</url>
+	    </pluginRepository>
+	</pluginRepositories>
+	
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>[0.0,)</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+			<version>3.3.2.GA</version>
+		</dependency>	
+		<dependency>
+			<groupId>antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>2.7.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.9.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.db2</groupId>
+			<artifactId>db2jcc</artifactId>
+			<version>8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>1.5.8</version>
+		</dependency>
+		<dependency>
+			<groupId>bouncycastle</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
+			<version>144</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.sourceforge.jtds</groupId>
+		    <artifactId>jtds</artifactId>
+		    <version>1.2.4</version>
+		</dependency> 
+		<dependency>
+		    <groupId>net.sourceforge.jtds</groupId>
+		    <artifactId>jtds</artifactId>
+		    <version>1.2.4</version>
+		</dependency> 
+			<dependency>
+		    <groupId>com.mysql.jdbc</groupId>
+		    <artifactId>Driver</artifactId>
+		    <version>5.1.10</version>
+		</dependency> 
+		
+		<dependency>
+		    <groupId>javax</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.3</version>
+		</dependency> 
+		
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.14</version>
+		</dependency> 
+		<dependency>
+		<groupId>commons-codec</groupId>
+  		<artifactId>commons-codec</artifactId>
+	  <version>1.3</version>	
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<sourceDirectory>src/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/resources</directory>
+				<excludes>
+					<exclude>version.xml</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>maven-buildnumber-plugin</artifactId>
+				<version>0.9.4</version>
+				<configuration>
+					<format>{0,date,dd MMM yyyy HH:mm}</format>
+					<items>
+						<item>timestamp</item>
+					</items>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warSourceDirectory>src/webapps</warSourceDirectory>
+					<webResources>
+						<resource>
+							<directory>src/resources</directory>
+							<targetPath>WEB-INF/classes/</targetPath>
+							<includes>
+								<include>version.xml</include>
+							</includes>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  <display-name>TILSSO</display-name>
+  <description>TIL SSO Web Application</description>
+  <!--  -->
+	<filter>
+	 <filter-name>PermittedIPCheckFilter</filter-name>
+	 <filter-class>com.timesgroup.sso.filters.PermittedIPCheckFilter</filter-class>
+	 <init-param>
+      <param-name>permittedIPFileName</param-name>
+      <param-value>d:/tilsso/permittediplist.txt</param-value>
+   </init-param>
+   	 <init-param>
+      <param-name>cacheReloadInSeconds</param-name>
+      <param-value>20</param-value>
+   </init-param> 
+   	 <init-param>
+      <param-name>caching</param-name>
+      <param-value>true</param-value>
+   </init-param> 
+  	</filter>
+  	
+  	<!--  
+   <filter-mapping>
+    <filter-name>PermittedIPCheckFilter</filter-name>
+    <url-pattern>/CheckValidUser</url-pattern>
+   	</filter-mapping>
+   	
+   	<filter-mapping>
+    <filter-name>PermittedIPCheckFilter</filter-name>
+    <url-pattern>/CheckUserExist</url-pattern>
+   	</filter-mapping>
+   	
+   	 <filter-mapping>
+    <filter-name>SiteIntegrationCheckFilter</filter-name>
+    <url-pattern>/Login</url-pattern>
+   	</filter-mapping>
+   	
+   	-->
+  	
+  		<filter>
+	 <filter-name>SiteIntegrationCheckFilter</filter-name>
+	 <filter-class>com.timesgroup.sso.filters.SiteIntegrationCheckFilter</filter-class>
+	 <init-param>
+      <param-name>permittedSiteFileName</param-name>
+      <param-value>d:/tilsso/permittedsitelist.txt</param-value>
+   </init-param>
+   	 <init-param>
+      <param-name>cacheReloadInSeconds</param-name>
+      <param-value>20</param-value>
+   </init-param> 
+   	 <init-param>
+      <param-name>caching</param-name>
+      <param-value>true</param-value>
+   </init-param> 
+  	</filter>
+  	
+  
+ <!-- 
+ <context-param>
+     <description>UseractivityLogging</description>
+    <param-name>Login</param-name>
+    <param-value>false</param-value>
+</context-param>    	  	
+ <context-param>
+     <description>UseractivityLogging</description>
+    <param-name>Logout</param-name>
+    <param-value>false</param-value>
+</context-param>     	  	
+ <context-param>
+     <description>UseractivityLogging</description>
+    <param-name>ChangePassword</param-name>
+    <param-value>false</param-value>
+</context-param>  
+ <context-param>
+     <description>UseractivityLogging</description>
+    <param-name>ForgotPassword</param-name>
+    <param-value>false</param-value>
+</context-param>  
+ <context-param>
+     <description>UseractivityLogging</description>
+    <param-name>GetUserProfile</param-name>
+    <param-value>false</param-value>
+</context-param>  
+  -->
+  	<servlet>
+		<servlet-name>GetUserIdByEMailID</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.GetUserIdByEMailIdServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetEmailIdByUserId</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.GetEmailIdByUserIdServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetITimesIdByEmailId</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.GetITimesIdByEmailIdServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetITimesIdByUserId</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.GetITimesIdByUserIdServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>IsMappingExists</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.IsMappingExistsServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>UpdateITimesId</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.UpdateITimesIdServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CheckUserIdExists</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.CheckUserIdExistsServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>AddUserMapping</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.AddUserMappingServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>FetchInactiveUsers</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.FetchInactiveUsersServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>AddDirectUserMapping</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.AddDirectUserMappingServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>InsertUserProfile</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.InsertUserProfileServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>UpdateUserProfile</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.UpdateUserProfileServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CheckAvailability</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.CheckUserAvailabilityServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CheckActivatedUser</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.CheckActivatedUserServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>UpdateEmailId</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.UpdateEmailIdServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetInactiveUserDetail</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.GetInactiveUserDetailServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetActivationStatus</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.GetActivationStatusServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetAvailableUserIds</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.GetAvailableUserIdsServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetInviteeList</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.GetInviteeListServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>UpdateInactiveUserSiteReg</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.UpdateInactiveUserSiteRegServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>SendITimesInvitation</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.SendITimesInvitationServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CheckInvitation</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.CheckInvitationServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetITimesUserProfile</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.GetUserProfileServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetPassword</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.FetchPasswordServlet</servlet-class>
+	</servlet>
+	
+	
+	
+	
+	
+	
+	
+	
+	<servlet>
+		<servlet-name>SSOStartup</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.SSOStartupServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>Iseemail</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.ISeeMailUserAuthenticationServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CheckUserCredentials</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.CheckUserCredentialsServlet</servlet-class>
+	</servlet>
+	
+	 <servlet>
+		<servlet-name>CheckUserExist</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.CheckUserExistServlet</servlet-class>
+	</servlet>
+	
+	 <servlet>
+		<servlet-name>CheckValidUser</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.CheckValidUserServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetUserProfile</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.UserProfileServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ForgotPassword</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.ForgotPasswordServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>AddUser</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.AddUserServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>UpdateUser</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.UpdateUserServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ChangePassword</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.ChangePasswordServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetSecQstnAns</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.GetSecQstnAnsWithPassword</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>GetUserProfileXML</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.GetUserProfileXMLServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.CookieBasedLoginServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.CookieClearingServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>CookieDecrypt</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.CookieValueDecryptServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>GetUserIdByEMailID</servlet-name>
+		<url-pattern>/GetUserIdByEMailID</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+		<servlet-name>GetEmailIdByUserId</servlet-name>
+		<url-pattern>/GetEmailIdByUserId</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>GetITimesIdByEmailId</servlet-name>
+		<url-pattern>/GetITimesIdByEmailId</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>GetITimesIdByUserId</servlet-name>
+		<url-pattern>/GetITimesIdByUserId</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>IsMappingExists</servlet-name>
+		<url-pattern>/IsMappingExists</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>UpdateITimesId</servlet-name>
+		<url-pattern>/UpdateITimesId</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>CheckUserIdExists</servlet-name>
+		<url-pattern>/CheckUserIdExists</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet-mapping>
+		<servlet-name>AddUserMapping</servlet-name>
+		<url-pattern>/AddUserMapping</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>InsertUserProfile</servlet-name>
+		<url-pattern>/InsertUserProfile</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>UpdateUserProfile</servlet-name>
+		<url-pattern>/UpdateUserProfile</url-pattern>
+  </servlet-mapping>
+  
+ <servlet-mapping>
+		<servlet-name>CheckAvailability</servlet-name>
+		<url-pattern>/CheckAvailability</url-pattern>
+  </servlet-mapping>
+ 
+ <servlet-mapping>
+		<servlet-name>CheckActivatedUser</servlet-name>
+		<url-pattern>/CheckActivatedUser</url-pattern>
+  </servlet-mapping>
+ 
+ <servlet-mapping>
+		<servlet-name>UpdateEmailId</servlet-name>
+		<url-pattern>/UpdateEmailId</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>GetInactiveUserDetail</servlet-name>
+		<url-pattern>/GetInactiveUserDetail</url-pattern>
+  </servlet-mapping>
+ 
+ <servlet-mapping>
+		<servlet-name>GetActivationStatus</servlet-name>
+		<url-pattern>/GetActivationStatus</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>GetAvailableUserIds</servlet-name>
+		<url-pattern>/GetAvailableUserIds</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>GetInviteeList</servlet-name>
+		<url-pattern>/GetInviteeList</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>UpdateInactiveUserSiteReg</servlet-name>
+		<url-pattern>/UpdateInactiveUserSiteReg</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+		<servlet-name>SendITimesInvitation</servlet-name>
+		<url-pattern>/SendITimesInvitation</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+		<servlet-name>CheckInvitation</servlet-name>
+		<url-pattern>/CheckInvitation</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>GetPassword</servlet-name>
+		<url-pattern>/GetPassword</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <servlet-mapping>
+		<servlet-name>Iseemail</servlet-name>
+		<url-pattern>/Iseemail</url-pattern>
+  </servlet-mapping>
+    
+  <servlet-mapping>
+		<servlet-name>FetchInactiveUsers</servlet-name>
+		<url-pattern>/FetchInactiveUsers</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>AddDirectUserMapping</servlet-name>
+		<url-pattern>/AddDirectUserMapping</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>GetITimesUserProfile</servlet-name>
+		<url-pattern>/GetITimesUserProfile</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  <servlet-mapping>
+		<servlet-name>CheckUserCredentials</servlet-name>
+		<url-pattern>/CheckUserCredentials</url-pattern>
+  </servlet-mapping>
+
+    <servlet-mapping>
+		<servlet-name>CheckUserExist</servlet-name>
+		<url-pattern>/CheckUserExist</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+		<servlet-name>CheckValidUser</servlet-name>
+		<url-pattern>/CheckValidUser</url-pattern>
+  </servlet-mapping>
+
+   <servlet-mapping>
+		<servlet-name>GetUserProfile</servlet-name>
+		<url-pattern>/GetUserProfile</url-pattern>
+  </servlet-mapping>
+
+   <servlet-mapping>
+		<servlet-name>ForgotPassword</servlet-name>
+		<url-pattern>/ForgotPassword</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet-mapping>
+		<servlet-name>ChangePassword</servlet-name>
+		<url-pattern>/ChangePassword</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>AddUser</servlet-name>
+		<url-pattern>/AddUser</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>UpdateUser</servlet-name>
+		<url-pattern>/UpdateUser</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+		<servlet-name>GetSecQstnAns</servlet-name>
+		<url-pattern>/GetSqSaXML</url-pattern>
+  </servlet-mapping>
+ <servlet-mapping>
+		<servlet-name>GetUserProfileXML</servlet-name>
+		<url-pattern>/GetUserProfileXML</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+
+    <servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+
+    <servlet-mapping>
+		<servlet-name>CookieDecrypt</servlet-name>
+		<url-pattern>/CookieStrCheckXML</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
+

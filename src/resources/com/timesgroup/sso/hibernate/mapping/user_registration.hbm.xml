@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.timesgroup.sso.hibernate.mapping">
+
+    <class name="UserRegistration" table="URTB_USR_RGSTRTN">
+        <id name="user_id" column="USR_ID_VC">
+        </id>
+        <property name="password" column="PSSWRD_VC"/>
+        <property name="email_id" column="EML_VC"/>
+        <property name="first_name" column="FRST_NM_VC"/>
+        <property name="last_name" column="LST_NM_VC"/>
+        <property name="forget_password_question" column="FRGT_PSSWRD_QSTN_VC"/>
+        <property name="forget_password_answer" column="FRGT_PSSWRD_ANSWR_VC"/>
+        <property name="registration_site" column="SITE_REG"/>
+        <property name="create_date" type="date"  column="CRT_DT" length="4"/>
+        <property name="middle_name" column="M_NAME"/>
+        <property name="address" column="ADDRESS"/>
+        <property name="city" column="CITY"/>
+        <property name="state" column="STATE"/>
+        <property name="country" column="COUNTRY"/>
+        <property name="pin" column="PIN"/>
+        <property name="dob"  type="date"  column="DOB" length="4"/>
+        <property name="gender"   column="GENDER" length="1" type="java.lang.Character"/>
+        <property name="occupation" column="OCCUPATION"/>
+        <property name="industry" column="INDUSTRY"/>
+        <property name="education" column="EDUCATION"/>
+        <property name="incomegroup" column="INCOMEGROUP"/>
+        <property name="referrel" column="REFERREL"/>
+        <property name="travelfrequency" column="TRAVELFREQUENCY"/>
+        <property name="airtravel" column="AIRTRAVEL"/>
+        <property name="create_time"  type="time" length="3" column="CRT_TIME"/>
+        <property name="pop" column="POP" length="1" type="java.lang.Character" not-null="false"/>
+        <property name="imap" column="IMAP" length="1" type="java.lang.Character"/>
+        <property name="res_phone" column="RESPHONE"/>
+        <property name="mobilephone" column="MOBILIEPHONE"/>
+        <property name="onlineusage" column="ONLINEUSAGE" length="1" type="java.lang.Character"/>
+        <property name="onlineshopping" column="ONLINESHOPPING" length="1" type="java.lang.Character"/>
+        <property name="maritalstatus" column="MARITALSTATUS" length="1" type="java.lang.Character"/>
+        <property name="sms_status" column="SMS_STATUS" />
+        <property name="profile_status" column="PROFILE_STATUS" length="1" type="java.lang.Character"/>
+    </class>
+
+
+</hibernate-mapping>
