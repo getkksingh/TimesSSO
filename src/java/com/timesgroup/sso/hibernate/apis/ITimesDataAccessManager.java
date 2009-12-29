@@ -379,24 +379,31 @@ public class ITimesDataAccessManager {
 		return 0;
 	}
 	
-	public int updateUserProfile(String emailId,String firstName,
+	public String updateUserProfile(String emailId,String firstName,
 			String lastName ,Date dateOfBirth,String password,String gender,String city){
 		
 		Session session = null;
 		Transaction tx=null;
+		String userName="";
 		
 		try {
 				
 			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			tx=session.beginTransaction();
 			
-			List result = session.createQuery("from UserRegistrationItimes urt where urt.user_id = :urt")
+			/*List result = session.createQuery("from UserRegistrationItimes urt where urt.user_id = :urt")
 			.setParameter("urt", "iti12345")
+			.list(); // TODO
+*/			
+			List result = session.createQuery("from UserRegistrationItimes urt where urt.email_id = :urt")
+			.setParameter("urt", emailId)
 			.list(); // TODO
 		
 			if (result != null && result.size() >= 1){
 				
 				UserRegistrationItimes userRegistration = (UserRegistrationItimes) result.get(0);
+				userName=userRegistration.getUser_id();
+				
 				userRegistration.setEmail_id(emailId);
 				userRegistration.setFirst_name(firstName);
 				userRegistration.setLast_name(lastName);
@@ -408,13 +415,13 @@ public class ITimesDataAccessManager {
 			}
 			
 			tx.commit();
-			return 1;
+			return userName;
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
 		}
 		
-		return 0;
+		return userName;
 	}
 	
 	public boolean isUserIdAlreadyExists(String userId){

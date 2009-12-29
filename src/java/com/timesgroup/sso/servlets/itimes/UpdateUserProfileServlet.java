@@ -117,27 +117,23 @@ public class UpdateUserProfileServlet extends HttpServlet{
 		password=(new CryptoUtility()).performEncrypt(password.trim());
 		
 		ITimesDataAccessManager iTimesDataAccessManager = new ITimesDataAccessManager();
-		int status = iTimesDataAccessManager.updateUserProfile(emailId.toLowerCase(),firstName.toLowerCase(),
+		String userName = iTimesDataAccessManager.updateUserProfile(emailId.toLowerCase(),firstName.toLowerCase(),
 					lastName.toLowerCase(),parsedDate,password, gender, city);
 	        
-		if(status==0){
+		if(userName.trim().length()==0){
 			
 			mylogger.error(SSOConstants.UpdateUserProfile.MESSAGE_ERROR_UPDATION);
 			responseWriter.write(SSOConstants.UpdateUserProfile.MESSAGE_ERROR_UPDATION);
 			return;
-		}
-		
-		if(status==1){
+		}else{
 			
 			String str=SSOConstants.XML_URL+"<NewDataSet>\n<Table>\n";
-			str+="<usr_id_vc>iti10016</usr_id_vc>\n"; 
+			str+="<usr_id_vc>"+userName+"</usr_id_vc>\n"; 
 			str+="</Table></NewDataSet>\n";
 
 			responseWriter.write(str);
 			return;
-			
 		}
-		
 	}	
 
 }

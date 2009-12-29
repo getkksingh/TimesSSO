@@ -1,8 +1,12 @@
 package com.timesgroup.sso.constants;
 
-import java.util.Iterator;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Properties;
 import java.util.Queue;
 
@@ -14,7 +18,6 @@ import javax.mail.internet.MimeMessage;
 
 import org.apache.log4j.Logger;
 
-import com.mysql.jdbc.Constants;
 import com.timesgroup.sso.hibernate.mapping.UserInvitation;
 
 public class TimesMail implements Runnable{
@@ -25,6 +28,37 @@ public class TimesMail implements Runnable{
 	private static final int SMTP_HOST_PORT = 465;
 	private static final String SMTP_AUTH_USER = "gautamn2002@gmail.com";
 	private static final String SMTP_AUTH_PWD = "I2005dCS";
+	private static String emailTemplate = null ;
+	static {
+	InputStream  is =	TimesMail.class.getResourceAsStream("/com/timesgroup/sso/templates/itimes_invitation.html");
+	char[] buffer = new char[0x10000];
+	StringBuilder out = new StringBuilder();
+	Reader in = null ;
+	try {
+		in = new InputStreamReader(is, "UTF-8");
+	} catch (UnsupportedEncodingException e) {
+		
+		e.printStackTrace();
+	}
+	int read = 0;
+	do {
+	  try {
+		read = in.read(buffer, 0, buffer.length);
+	} catch (IOException e) {
+		
+		e.printStackTrace();
+	}
+	  if (read>0) {
+	    out.append(buffer, 0, read);
+	  }
+	}
+	while (read>=0);
+	
+	emailTemplate = out.toString() ;
+	//System.out.println(emailTemplate);
+
+	}
+	
 	
 	public static Queue<UserInvitation> mailInvitations = new LinkedList<UserInvitation>();
 	final Logger mylogger = Logger.getLogger(TimesMail.class);
@@ -67,12 +101,28 @@ public class TimesMail implements Runnable{
 			UserInvitation userInvitation=null;
 			while((userInvitation=this.deQueueInvitation())!=null){
 				
-				//System.out.println("TimesMail.run()"+userInvitation.getEmailId());
-				//System.out.println("TimesMail.run()"+this.mailInvitations.size());
+				/*Darpan Jian 
+				Tuesday, December 22, 2009 1:07
+				Nitin Gautam
+
+ 				 Darpan Jian
+				nitin.gautam
+				Darpan Jian*/
 				
-				message.setContent("Click on the link to join itimes\n\n"
-						+"http://"+SSOConstants.ServerIP+"/InsertUserProfile?hashCode="+
-						userInvitation.getHashCode()+"\n", "text/plain");
+				//message.setContent("Dear "+userInvitation.getNewUserId()+",", "text/html");
+				message.setContent(
+						String.format(emailTemplate,
+						"",
+						(new Date()).toString(),
+						userInvitation.getRefereeUserId(),
+						"",
+						userInvitation.getRefereeUserId(),
+						"",""
+						),
+						"text/html");
+				//"Click on the link to join itimes\n\n"
+		//		+"http://"+SSOConstants.ServerIP+"/InsertUserProfile?hashCode="+
+		//		userInvitation.getHashCode()+"\n", "text/plain"
 				
 				message.setRecipient(Message.RecipientType.TO, new InternetAddress(
 						userInvitation.getEmailId()));	
@@ -111,6 +161,13 @@ public class TimesMail implements Runnable{
 		return mailInvitations.remove();
 	}
 
+	public static void main(String[] args) {
+		System.out.println(emailTemplate);
+		System.out.println(String.format(emailTemplate,
+						" singh", "singh","singh","singh","singh","singh" ,"singh"
+						
+						));
+	}
 	
 
 }
