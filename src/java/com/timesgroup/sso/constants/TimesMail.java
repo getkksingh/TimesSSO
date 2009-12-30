@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.Properties;
 import java.util.Queue;
@@ -138,7 +137,7 @@ public class TimesMail implements Runnable{
 	
 	public synchronized UserInvitation deQueueInvitation(){
 		
-		if(mailInvitations.size()==0) return null;
+		if(mailInvitations!=null && mailInvitations.size()==0) return null;
 		
 		return mailInvitations.remove();
 	}
