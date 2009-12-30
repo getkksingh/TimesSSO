@@ -84,6 +84,7 @@ public class SendITimesInvitationServlet extends HttpServlet{
 			}
 			Base64 base64 = new Base64();
 			String hashcode= new String(base64.encode((userId+":"+emailId[i]).getBytes()));
+			//INFO ABOUT USER TO WHOM INVITATION IS SEND TODO
 			UserInvitation userInvitation=new UserInvitation();
 			userInvitation.setCreatedDate(new Date());
 			userInvitation.setEmailId(emailId[i]);
@@ -92,16 +93,14 @@ public class SendITimesInvitationServlet extends HttpServlet{
 			userInvitation.setStatus(0);
 			
 			userInvitations.add(userInvitation);
-			
 		}
 		
-		System.out.println("SendITimesInvitationServlet.service()"+userInvitations);
+		//System.out.println("SendITimesInvitationServlet.service()"+userInvitations);
 		
 		/*Send invitations via Thread*/
 		if(userInvitations!=null && userInvitations.size()>0){
 			
 			TimesMail timesMail= TimesMail.getInstance();
-			
 			Iterator iter=userInvitations.iterator();
 			
 			while(iter.hasNext()){
@@ -109,11 +108,12 @@ public class SendITimesInvitationServlet extends HttpServlet{
 				UserInvitation userInvitation=(UserInvitation)iter.next();
 				timesMail.enQueueInvitation(userInvitation);
 			}
-			
 		}
 		
 		ITimesDataAccessManager iTimesDataAccessManager = new ITimesDataAccessManager();
 		iTimesDataAccessManager.saveInvitationInformation(userInvitations);
+		
+		responseWriter.write("<status>true</status>");
 		
 		return ;
         

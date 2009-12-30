@@ -101,33 +101,15 @@ public class TimesMail implements Runnable{
 			UserInvitation userInvitation=null;
 			while((userInvitation=this.deQueueInvitation())!=null){
 				
-				/*Darpan Jian 
-				Tuesday, December 22, 2009 1:07
-				Nitin Gautam
-
- 				 Darpan Jian
-				nitin.gautam
-				Darpan Jian*/
-				
-				//message.setContent("Dear "+userInvitation.getNewUserId()+",", "text/html");
 				message.setContent(
 						String.format(emailTemplate,
-						"",
-						(new Date()).toString(),
 						userInvitation.getRefereeUserId(),
-						"",
-						userInvitation.getRefereeUserId(),
-						"",""
+						SSOConstants.ServerURL+userInvitation.getHashCode()			
 						),
 						"text/html");
-				//"Click on the link to join itimes\n\n"
-		//		+"http://"+SSOConstants.ServerIP+"/InsertUserProfile?hashCode="+
-		//		userInvitation.getHashCode()+"\n", "text/plain"
 				
-				message.setRecipient(Message.RecipientType.TO, new InternetAddress(
-						userInvitation.getEmailId()));	
-
-				transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+				message.setRecipient(Message.RecipientType.TO, new InternetAddress(userInvitation.getEmailId()));	
+     			transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
 				mylogger.info("Mail send to "+userInvitation.getEmailId());
 			}
 			
@@ -165,8 +147,7 @@ public class TimesMail implements Runnable{
 		System.out.println(emailTemplate);
 		System.out.println(String.format(emailTemplate,
 						" singh", "singh","singh","singh","singh","singh" ,"singh"
-						
-						));
+		));
 	}
 	
 

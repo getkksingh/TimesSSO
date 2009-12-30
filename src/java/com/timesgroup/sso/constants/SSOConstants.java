@@ -7,7 +7,7 @@ public class SSOConstants {
 	public final static String VALID_USERID_PATTERN="[a-z0-9_]*";
 	public final static String VALID_EMAILID_PATTERN=".+@.+\\.[a-z]+";
 	public final static String VALID_INTEGER_PATTERN="[0-9]*";
-	public final static String ServerIP="127.0.0.1";
+	public final static String ServerURL="http://www.itimes.com/login.php?hs=";
 	
 	
 	public final class CheckUserCredentialsServletConstants {
