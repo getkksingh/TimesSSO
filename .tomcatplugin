@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcatProjectProperties>
+    <rootDir>/</rootDir>
+    <exportSource>false</exportSource>
+    <reloadable>true</reloadable>
+    <redirectLogger>false</redirectLogger>
+    <updateXml>true</updateXml>
+    <warLocation></warLocation>
+    <extraInfo></extraInfo>
+    <webPath></webPath>
+    <webClassPathEntries>
+        <webClassPathEntry>/TimesSSO/target/classes</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/antlr/antlr/2.7.6/antlr-2.7.6.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/bouncycastle/bcprov-jdk16/144/bcprov-jdk16-144.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/com/ibm/db2/db2jcc/8.1/db2jcc-8.1.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/com/mysql/jdbc/Driver/5.1.10/Driver-5.1.10.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/commons-codec/commons-codec/1.3/commons-codec-1.3.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/commons-collections/commons-collections/3.1/commons-collections-3.1.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/javassist/javassist/3.9.0.GA/javassist-3.9.0.GA.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/javax/jta/1.1/jta-1.1.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/javax/mail/1.4.3/mail-1.4.3.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/junit/junit/4.2/junit-4.2.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/log4j/log4j/1.2.14/log4j-1.2.14.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/net/sourceforge/jtds/jtds/1.2.4/jtds-1.2.4.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/org/dom4j/1.6.1/dom4j-1.6.1.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/org/hibernate/hibernate/3.3.2.GA/hibernate-3.3.2.GA.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar</webClassPathEntry>
+        <webClassPathEntry>M2_REPO/org/slf4j/slf4j-nop/1.5.8/slf4j-nop-1.5.8.jar</webClassPathEntry>
+    </webClassPathEntries>
+</tomcatProjectProperties>

@@ -1,0 +1,5 @@
+<Context docBase="C:\Documents and Settings\krishna.kumarsingh\workspace\TimesSSO\src\webapps" path="/sso" 
+	workDir="D:\install\apache-tomcat-6.0.20\work">
+	<Logger className="org.apache.catalina.logger.SystemOutLogger" verbosity="4" timestamp="true" />
+	<Loader className="org.apache.catalina.loader.DevLoader" reloadable="true" debug="1" />
+</Context>
