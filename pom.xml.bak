@@ -9,7 +9,7 @@
 	<packaging>war</packaging>
 	<version>1</version>
 	<name>Single Sign On (SSO Project)</name>
-   
+
 	<developers>
 		<developer>
 			<id>krishna</id>
