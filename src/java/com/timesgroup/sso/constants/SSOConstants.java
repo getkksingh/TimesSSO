@@ -406,12 +406,12 @@ public class SSOConstants {
 		public final static String PARAM_NEWPASSWORD="newpassword";
 		public final static String MESSAGE_NOVALUE_USERID="NO VALUE GIVEN FOR USERID";
 		public final static String MESSAGE_INVALID_USERID="INVALID USERID";
+		public final static String MESSAGE_PASSWORD_CHANGED="NEW PASSWORD CHANGED SUCCESSFULLY";
 		public final static String ERROR_MESSAGE_INVALIDUSERID = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Error><ErrCode>E101</ErrCode>" +
 		"<Message>Invalid userid</Message><Exception>Either no value provided for userid or userid has special characters.</Exception></Error>";
 		public final static String ERROR_MESSAGE_INVALIDUSERID_INCORRECTLENGTH = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Error><ErrCode>E102</ErrCode>" +
 		"<Message>Invalid userid</Message><Exception>UserId length cannot be more than 50 characters.</Exception></Error>";
-		public final static String ERROR_CHANGEPASSWORD="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Error><ErrCode>E103</ErrCode>" +
-		"<Message>Change Password Error</Message><Exception>Error while updating record.</Exception></Error>";
+		public final static String ERROR_CHANGEPASSWORD="UNABLE TO CHANGE PASSWORD.";
 	}
 	
 	public final class CheckActivatedUser{
@@ -591,6 +591,21 @@ public class SSOConstants {
 		"<Message>Invalid userid</Message><Exception>UserId length cannot be more than 50 characters.</Exception></Error>";
 		public final static String ERROR_FETCHPASSWORD="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Error><ErrCode>E103</ErrCode>" +
 		"<Message>Fetch Password Error</Message><Exception>Error while fetching record.</Exception></Error>";
+	}
+	
+	public final class UpdateInactiveUser{
+		
+		public final static String PARAM_EMAILID="emailid";
+		public final static String MESSAGE_INVALID_EMAILID="INVALID EMAILID";
+		public final static String ERROR_WITH_UPDATEINACTIVEUSER_REQUEST_PARAMETERS = "INVALID PARAMETERS";
+		public final static String MESSAGE_ERROR_INSERTION="UNABLE TO UPDATE RECORD";
+		public final static String MESSAGE_SUCCESSFUL_INSERTION="RECORD UPDATED SUCCESSFULLY";
+		public final static String ERROR_MESSAGE_INVALIDEMAILID = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Error><ErrCode>E101</ErrCode>" +
+		"<Message>Invalid emailid</Message><Exception>EmailId is not valid.</Exception></Error>";
+		public final static String ERROR_MESSAGE_INVALIDEMAILID_INCORRECTLENGTH = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Error><ErrCode>E102</ErrCode>" +
+		"<Message>Invalid emailid</Message><Exception>EmailId cannot be more than 100 characters.</Exception></Error>";
+		public final static String ERROR_INSERTION="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Error><ErrCode>E103</ErrCode>" +
+		"<Message>Insertion error</Message><Exception>Error while inserting record.</Exception></Error>";
 	}
 	
 	

@@ -40,18 +40,17 @@ public class GetITimesIdByUserIdServlet  extends HttpServlet{
 
 		ITimesDataAccessManager iTimesDataAccessManager = new ITimesDataAccessManager();
 		String itimesId = iTimesDataAccessManager.getITimesIdByUserId(userId);
-
-		if (itimesId.compareTo(SSOConstants.GetITimesIdByUserIdConstants.RECORD_NOT_FOUND) == 0) {
+		
+		if(itimesId!=null){
+			
+			mylogger.debug(itimesId);
+			responseWriter.write(SSOConstants.XML_URL+"<itimesid>" + itimesId + "</itimesid>");
+		}else{
+			
 			mylogger.info(SSOConstants.GetITimesIdByUserIdConstants.RECORD_NOT_FOUND);
 			responseWriter.write(SSOConstants.XML_URL+"<itimesid></itimesid>");
-			return;
 		}
-
-		mylogger.debug(itimesId);
-		responseWriter.write(SSOConstants.XML_URL+"<itimesid>" + itimesId + "</itimesid>");
-
+		
 		return;
-
 	}
-
 }

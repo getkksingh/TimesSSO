@@ -61,7 +61,7 @@ public class ChangePasswordServlet extends HttpServlet {
 		
 		
 		if(status)
-			mylogger.debug("PASSWORD CHANGED");
+			mylogger.debug(SSOConstants.ChangePassword.MESSAGE_PASSWORD_CHANGED);
 		else mylogger.debug(SSOConstants.ChangePassword.ERROR_CHANGEPASSWORD);
 		
 		responseWriter.write(SSOConstants.XML_URL+"<status>" + status + "</status>");

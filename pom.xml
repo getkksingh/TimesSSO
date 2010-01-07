@@ -9,6 +9,15 @@
 	<packaging>war</packaging>
 	<version>1</version>
 	<name>Single Sign On (SSO Project)</name>
+	<ciManagement></ciManagement>
+		<licenses>
+		  <license>
+		    <name>TIMES License</name>
+		    <url>http://times.com</url>
+		    <distribution>repo</distribution>
+		    <comments>Properitory Times Group license</comments>
+		  </license>
+		</licenses>
 
 	<developers>
 		<developer>
@@ -21,7 +30,23 @@
 			<organization>Times Internet Limited</organization>
 			<timezone>+5:30</timezone>
 		</developer>
+		<developer>
+			<id>gautam</id>
+			<name>Nitin Gautam</name>
+			<email>nitin.gautam@indiatimes.co.in</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<organization>Times Internet Limited</organization>
+			<timezone>+5:30</timezone>
+		</developer>
 	</developers>
+	<scm>
+	  <connection>scm:git:git://git@github.com:getkksingh/TimesSSO.git</connection>
+   	 <developerConnection>scm:git:git://git@github.com:getkksingh/TimesSSO.git</developerConnection>
+   	 <tag>MASTER</tag>
+   	 <url>http://github.com/getkksingh/TimesSSO</url>
+	</scm>
 	<repositories>
 		<repository>
 			<id>m2-ibiblio-rsync-repo</id>
@@ -45,6 +70,11 @@
 	</pluginRepositories>
 	
 	<dependencies>
+		<dependency>
+			<groupId>bouncycastle</groupId>
+			<artifactId>bcprov-jdk15</artifactId>
+			<version>144</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -107,11 +137,7 @@
 			<artifactId>slf4j-nop</artifactId>
 			<version>1.5.8</version>
 		</dependency>
-		<dependency>
-			<groupId>bouncycastle</groupId>
-			<artifactId>bcprov-jdk16</artifactId>
-			<version>144</version>
-		</dependency>
+		
 		<dependency>
 		    <groupId>net.sourceforge.jtds</groupId>
 		    <artifactId>jtds</artifactId>
@@ -132,6 +158,12 @@
 		    <groupId>javax</groupId>
 		    <artifactId>mail</artifactId>
 		    <version>1.4.3</version>
+		</dependency> 
+		
+		<dependency>
+		    <groupId>javax</groupId>
+		    <artifactId>activation</artifactId>
+		    <version>1.1.1</version>
 		</dependency> 
 		
 		<dependency>
@@ -157,6 +189,16 @@
 			</resource>
 		</resources>
 		<plugins>
+		<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.6.1</version>
+        <configuration>
+          <show>private</show>
+          <nohelp>true</nohelp>
+        </configuration>
+      </plugin>
+		
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

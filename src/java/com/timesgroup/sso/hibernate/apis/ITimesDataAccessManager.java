@@ -106,6 +106,7 @@ public class ITimesDataAccessManager {
 		Session session = null;
 		Transaction tx = null;
 		UserMapping userMapping = null;
+		String itimesId = null;
 
 		try {
 			session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -120,15 +121,16 @@ public class ITimesDataAccessManager {
 				userMapping = (UserMapping) result.get(0);
 			}
 
-			if (userMapping == null)// we got no record
-				return SSOConstants.GetITimesIdByUserIdConstants.RECORD_NOT_FOUND;
 		} catch (Exception e) {
 			e.printStackTrace();
 			tx.rollback();
 		}
 
-		mylogger.debug(userMapping.getItimesId());
-		return userMapping.getItimesId();
+		if(userMapping!=null){
+			itimesId=userMapping.getItimesId();
+		}
+		
+		return itimesId;
 	}
 
 	public boolean isUserExistsInUserMapping(String userId, String emailId) {
@@ -447,32 +449,36 @@ public class ITimesDataAccessManager {
 		return false;
 	}
 	
-	public boolean changePassword(String userId, String oldpassword, String oldPassword){
+	public boolean changePassword(String userId, String oldpassword, String newPassword){
 		
 		Session session = null;
 		Transaction tx = null;
+		boolean isPasswordChanged=false;
 		
 		try {
 				session = HibernateUtil.getSessionFactory().getCurrentSession();
 				tx=session.beginTransaction();
 			
-				List result = session.createQuery("from UserRegistrationItimes urt where urt.user_id = :urt")
+				List result = session.createQuery("from UserRegistrationItimes urt where urt.user_id = :urt" +
+						" and urt.password= :urtp")
 				.setParameter("urt", userId)
-				.list(); // TODO
+				.setParameter("urtp", oldpassword)
+				.list();
 			
 				if (result != null && result.size() == 1){
 					
 					UserRegistrationItimes userRegistration = (UserRegistrationItimes) result.get(0);
-					userRegistration.setPassword(oldPassword);
+					userRegistration.setPassword(newPassword);
 					session.update(userRegistration);
+					isPasswordChanged=true;
 				}
 			tx.commit();	
-			return true;
+			
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
 		}
-		return false;
+		return isPasswordChanged;
 	}
 	
 	public int checkActivatedUser(String emailId){
@@ -778,6 +784,14 @@ public class ITimesDataAccessManager {
 		}
 		
 		return "false";
+	}
+	
+	public int updateInactiveUser(String emailId){
+		
+		
+		
+		
+		return 0;
 	}
 }
 

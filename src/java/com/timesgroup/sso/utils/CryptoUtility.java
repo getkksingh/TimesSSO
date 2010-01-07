@@ -130,4 +130,11 @@ public class CryptoUtility {
 	        
 	        return (new String(out.toByteArray()));
 	    }
+	    
+	    public static void main(String[] args){
+	    	
+	    	String password=(new CryptoUtility()).performEncrypt("password1");
+	    	System.out.println("CryptoUtility.main()"+password);
+	    	
+	    }
 }

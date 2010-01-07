@@ -207,6 +207,12 @@
 		<servlet-class>com.timesgroup.sso.servlets.itimes.FetchPasswordServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>ChangeITimesPassword</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.ChangePasswordServlet</servlet-class>
+	</servlet>
+	
+	
 	
 	
 	
@@ -396,6 +402,10 @@
 		<url-pattern>/GetPassword</url-pattern>
   </servlet-mapping>
   
+  <servlet-mapping>
+		<servlet-name>ChangeITimesPassword</servlet-name>
+		<url-pattern>/ChangeITimesPassword</url-pattern>
+  </servlet-mapping>
   
   
   
