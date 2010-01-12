@@ -4,11 +4,10 @@ package com.timesgroup.sso.constants;
 public class SSOConstants {
 
 	public final static String XML_URL="<?xml version='1.0' encoding='utf-8' ?>\n";
-	public final static String VALID_USERID_PATTERN="[a-z0-9_]*";
+	public final static String VALID_USERID_PATTERN="^[a-z]+[0-9]*(\\.[a-z]+)?$";//"[a-z0-9_]*";
 	public final static String VALID_EMAILID_PATTERN=".+@.+\\.[a-z]+";
 	public final static String VALID_INTEGER_PATTERN="[0-9]*";
 	public final static String ServerURL="http://www.itimes.com/login.php?hs=";
-	
 	
 	public final class CheckUserCredentialsServletConstants {
 
@@ -606,6 +605,30 @@ public class SSOConstants {
 		"<Message>Invalid emailid</Message><Exception>EmailId cannot be more than 100 characters.</Exception></Error>";
 		public final static String ERROR_INSERTION="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Error><ErrCode>E103</ErrCode>" +
 		"<Message>Insertion error</Message><Exception>Error while inserting record.</Exception></Error>";
+	}
+	
+	public final class InsertIntegraUserProfile{
+		
+		public final static String PARAM_EMAILID = "emailid";
+		public final static String PARAM_FIRSTNAME = "firstname";
+		public final static String PARAM_LASTNAME = "lastname";
+		public final static String PARAM_PASSWORD = "password";
+		public final static String PARAM_DOB = "dob";
+		public final static String PARAM_IPADDRESS = "ipaddress";
+		public final static String PARAM_SITEREG = "sitereg";
+		public final static String PARAM_GENDER = "gender";
+		public final static String PARAM_CITY = "city";
+		public final static String PARAM_STATE = "state";
+		public final static String PARAM_COUNTRY = "country";
+		public final static String PARAM_SECQUEST = "secques";
+		public final static String PARAM_SECANS = "secans";
+		public final static String PARAM_MOBILE = "mobile";
+		public final static String PARAM_PIN = "pin";
+	}
+	
+	public final class CheckEmailIdAvailability{
+		
+		public final static String PARAM_EMAILID = "emailid";
 	}
 	
 	

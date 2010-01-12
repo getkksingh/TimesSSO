@@ -216,10 +216,21 @@
 	
 	
 	
+	<servlet>
+		<servlet-name>InsertIntegraUserProfile</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.emailauth.InsertUserProfileServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>isEmailIdAvailable</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.emailauth.CheckEmailIdAvailabilityServlet</servlet-class>
+	</servlet>
 	
 	
 	
 	
+	
+		
 	<servlet>
 		<servlet-name>SSOStartup</servlet-name>
 		<servlet-class>com.timesgroup.sso.servlets.SSOStartupServlet</servlet-class>
@@ -296,6 +307,24 @@
 		<servlet-class>com.timesgroup.sso.servlets.CookieValueDecryptServlet</servlet-class>
 	</servlet>
 
+	
+	<servlet-mapping>
+		<servlet-name>InsertIntegraUserProfile</servlet-name>
+		<url-pattern>/InsertIntegraUserProfile</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+		<servlet-name>isEmailIdAvailable</servlet-name>
+		<url-pattern>/isEmailIdAvailable</url-pattern>
+   </servlet-mapping>
+   
+   
+   
+   
+   
+   
+   
+   
 	<servlet-mapping>
 		<servlet-name>GetUserIdByEMailID</servlet-name>
 		<url-pattern>/GetUserIdByEMailID</url-pattern>
