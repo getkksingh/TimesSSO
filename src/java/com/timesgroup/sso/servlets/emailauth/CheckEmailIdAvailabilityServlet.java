@@ -13,6 +13,7 @@ import com.fieldvalidation.validators.FieldValidator;
 import com.timesgroup.sso.constants.ErrorMessages;
 import com.timesgroup.sso.constants.SSOConstants;
 import com.timesgroup.sso.hibernate.apis.AliasAuthDataAccessManager;
+import com.timesgroup.sso.hibernate.mapping.AliasMapping;
 import com.timesgroup.sso.utils.SSOUtils;
 
 public class CheckEmailIdAvailabilityServlet extends HttpServlet{
@@ -34,9 +35,9 @@ public class CheckEmailIdAvailabilityServlet extends HttpServlet{
 		}
 		
 		AliasAuthDataAccessManager aliasAuthDataAccessManager=new AliasAuthDataAccessManager();
-		String userProfile = aliasAuthDataAccessManager.ifEmailIdAvailable(emailId.toLowerCase());
+		AliasMapping aliasMapping = aliasAuthDataAccessManager.ifEmailIdAvailable(emailId.toLowerCase());
 		
-		if(userProfile.trim().length()>0){
+		if(aliasMapping.getUserProfile().trim().length()>0){
 			
 			mylogger.error(ErrorMessages.MESSAGE_EMAILID_EXISTS);
 			responseWriter.write(ErrorMessages.XML_URL+"<status>0</status>");

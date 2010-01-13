@@ -10,6 +10,16 @@
     <webPath></webPath>
     <webClassPathEntries>
         <webClassPathEntry>/TimesSSO/target/classes</webClassPathEntry>
+        <webClassPathEntry>C:/Program Files/Java/jre6/lib/charsets.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Program Files/Java/jre6/lib/ext/dnsns.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Program Files/Java/jre6/lib/ext/localedata.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Program Files/Java/jre6/lib/ext/sunjce_provider.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Program Files/Java/jre6/lib/ext/sunmscapi.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Program Files/Java/jre6/lib/ext/sunpkcs11.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Program Files/Java/jre6/lib/jce.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Program Files/Java/jre6/lib/jsse.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Program Files/Java/jre6/lib/resources.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Program Files/Java/jre6/lib/rt.jar</webClassPathEntry>
         <webClassPathEntry>M2_REPO/antlr/antlr/2.7.6/antlr-2.7.6.jar</webClassPathEntry>
         <webClassPathEntry>M2_REPO/bouncycastle/bcprov-jdk16/144/bcprov-jdk16-144.jar</webClassPathEntry>
         <webClassPathEntry>M2_REPO/com/ibm/db2/db2jcc/8.1/db2jcc-8.1.jar</webClassPathEntry>

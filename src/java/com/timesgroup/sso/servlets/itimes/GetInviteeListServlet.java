@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import com.timesgroup.sso.constants.SSOConstants;
 import com.timesgroup.sso.hibernate.apis.ITimesDataAccessManager;
 import com.timesgroup.sso.hibernate.mapping.UserInvitation;
+import com.timesgroup.sso.utils.SSOUtils;
 
 public class GetInviteeListServlet extends HttpServlet{
 	
@@ -41,7 +42,7 @@ public class GetInviteeListServlet extends HttpServlet{
 			return;
 		}
 		
-		if(userId!=null && !userId.matches(SSOConstants.VALID_USERID_PATTERN)){
+		if(userId!=null && !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
 			
 			mylogger.error(SSOConstants.GetInviteeList.MESSAGE_INVALID_USERID);
 			responseWriter.write(SSOConstants.GetInviteeList.ERROR_MESSAGE_INVALIDUSERID);

@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import com.timesgroup.sso.constants.ErrorMessages;
 import com.timesgroup.sso.constants.SSOConstants;
 import com.timesgroup.sso.hibernate.apis.AliasAuthDataAccessManager;
+import com.timesgroup.sso.hibernate.mapping.AliasMapping;
 import com.timesgroup.sso.hibernate.mapping.UserRegistration;
 import com.timesgroup.sso.utils.SSOUtils;
 
@@ -25,25 +26,40 @@ public class ActivateEmailIdServlet extends HttpServlet {
 		final Logger mylogger = Logger.getLogger(InsertUserProfileServlet.class);
 		String hashCode = request.getParameter(SSOConstants.ActivateEmailId.PARAM_HASHCODE);
 		
+		PrintWriter responseWriter = SSOUtils.getPrintWriter(response);
+		
+		if (hashCode == null || (hashCode.trim().compareTo("") == 0)) {
+			
+			mylogger.error(ErrorMessages.MESSAGE_INVALIDPARAMETERS);
+			responseWriter.write(ErrorMessages.MESSAGE_INVALIDPARAMETERS);
+			return;
+		}
+		
 		Base64 base64 = new Base64();
 		String tmpStr = new String(base64.decode((hashCode).getBytes()));
 		String userId=tmpStr.split(":")[0];
 		String emailId=tmpStr.split(":")[1];
 		
 		AliasAuthDataAccessManager aliasAuthDataAccessManager=new AliasAuthDataAccessManager();
-		String userProfile = aliasAuthDataAccessManager.ifEmailIdAvailable(emailId.toLowerCase());
+		AliasMapping aliasMapping = aliasAuthDataAccessManager.ifEmailIdAvailable(emailId.toLowerCase());
 		
-		if(userProfile.trim().length()==0){ // there is no email id for the given hashcode
+		if(aliasMapping==null){ // there is no email id for the given hashcode
 			mylogger.error(ErrorMessages.MESSAGE_INVALID_HASHCODE);
+			responseWriter.write(ErrorMessages.XMLMESSAGE_ERROR_INVALID_HASHCODE);
 			return;
 		}
 		
-		PrintWriter responseWriter = SSOUtils.getPrintWriter(response);
+		if((aliasMapping!=null) && (aliasMapping.getUserType().toString().equals("1"))){
+			
+			mylogger.error(ErrorMessages.MESSAGE_ALREADYACTIVATED_EMAIL);
+			responseWriter.write(ErrorMessages.XMLMESSAGE_ERROR_ALREADYACTIVATED_EMAIL);
+			return;
+		}
 		
 		UserRegistration userRegistration=new UserRegistration();
 		userRegistration.setUser_id(userId);
 		
-		StringTokenizer stringTokenizer=new StringTokenizer(userProfile,"&");
+		StringTokenizer stringTokenizer=new StringTokenizer(aliasMapping.getUserProfile(),"&");
 
 		while(stringTokenizer.hasMoreTokens()){
 			

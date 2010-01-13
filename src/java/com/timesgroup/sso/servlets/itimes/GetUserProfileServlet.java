@@ -15,6 +15,7 @@ import com.ibm.db2.jcc.am.u;
 import com.timesgroup.sso.constants.SSOConstants;
 import com.timesgroup.sso.hibernate.apis.ITimesDataAccessManager;
 import com.timesgroup.sso.hibernate.mapping.UserRegistrationItimes;
+import com.timesgroup.sso.utils.SSOUtils;
 
 public class GetUserProfileServlet extends HttpServlet {
 	
@@ -40,7 +41,7 @@ public class GetUserProfileServlet extends HttpServlet {
 			return;
 		}
 		
-		if(userId!=null && !userId.matches(SSOConstants.VALID_USERID_PATTERN)){
+		if(userId!=null && !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
 			
 			mylogger.error(SSOConstants.GetUserProfile.MESSAGE_INVALID_USERID);
 			responseWriter.write(SSOConstants.GetUserProfile.ERROR_MESSAGE_INVALIDUSERID);

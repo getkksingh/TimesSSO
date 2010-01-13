@@ -15,6 +15,7 @@ import com.fieldvalidation.validators.FieldValidator;
 import com.timesgroup.sso.constants.ErrorMessages;
 import com.timesgroup.sso.constants.SSOConstants;
 import com.timesgroup.sso.hibernate.apis.AliasAuthDataAccessManager;
+import com.timesgroup.sso.hibernate.mapping.AliasMapping;
 import com.timesgroup.sso.utils.SSOUtils;
 
 public class InsertUserProfileServlet extends HttpServlet{
@@ -44,11 +45,7 @@ public class InsertUserProfileServlet extends HttpServlet{
 		
 		/*****Validating each field****/
 		if(!FieldValidator.isValidField(FieldValidator.FIELDNAME_EMAILID,FieldValidator.FIELDTYPE_EMAILID, emailId, true) ||
-		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_FIRSTNAME,FieldValidator.FIELDTYPE_NAME, firstName, true) ||
-		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_LASTNAME,FieldValidator.FIELDTYPE_NAME, lastName, true) ||
-		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_DOB,FieldValidator.FIELDTYPE_DOB, dob, true) ||
-		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_PASSWORD,FieldValidator.FIELDTYPE_PASSWORD, password, true) ||
-		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_MOBILENUMBER,FieldValidator.FIELDTYPE_MOBILENUMBER, mobile, true)
+		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_PASSWORD,FieldValidator.FIELDTYPE_PASSWORD, password, true) 
 		   ){
 			
 			responseWriter.write(FieldValidator.errorMsg);
@@ -64,10 +61,10 @@ public class InsertUserProfileServlet extends HttpServlet{
 		}
 		
 		AliasAuthDataAccessManager aliasAuthDataAccessManager=new AliasAuthDataAccessManager();
-		String userProfile = aliasAuthDataAccessManager.ifEmailIdAvailable(emailId.toLowerCase());
+		AliasMapping aliasMapping = aliasAuthDataAccessManager.ifEmailIdAvailable(emailId.toLowerCase());
 		
 		//emailid already exists
-		if(userProfile.trim().length()>0){
+		if(aliasMapping.getUserProfile().trim().length()>0){
 			
 			responseWriter.write(ErrorMessages.XMLMESSAGE_ERROR_EMAILID_EXISTS);
 			return;
@@ -95,19 +92,19 @@ public class InsertUserProfileServlet extends HttpServlet{
 			str+="<psswrd_vc>"+password+"</psswrd_vc>\n"; 
 			str+="<CRT_DT>"+currentDate+"</CRT_DT>\n"; 
 			str+="<DateRegistered>"+currentDate+"</DateRegistered>\n"; 
-			str+="<site_reg>"+siteReg+"</site_reg>\n"; 
-			str+="<frst_nm_vc>"+firstName+"</frst_nm_vc>\n";  
-			str+="<lst_nm_vc>"+lastName+"</lst_nm_vc>\n";  
-			str+="<Address>"+ipAddress+"</Address>\n";  
-			str+="<Gender>"+gender+"</Gender>\n";
-			str+="<city>"+city+"</city>\n";  
-			str+="<state>"+state+"</state>\n";  
-			str+="<country>"+country+"</country>\n";  
-			str+="<dob>"+dob+"</dob>\n";  
-			str+="<pin>"+pin+"</pin>\n"; 
-			str+="<frgt_psswrd_qstn_vc>"+secQues+"</frgt_psswrd_qstn_vc>\n";
-			str+="<frgt_psswrd_answr_vc>"+secAns+"</frgt_psswrd_answr_vc>\n";
-			str+="<mobilephone>"+mobile+"</mobilephone>\n";
+			str+="<site_reg>"+(siteReg==null?"":siteReg)+"</site_reg>\n"; 
+			str+="<frst_nm_vc>"+(firstName==null?"":firstName)+"</frst_nm_vc>\n";  
+			str+="<lst_nm_vc>"+(lastName==null?"":lastName)+"</lst_nm_vc>\n";  
+			str+="<Address>"+(ipAddress==null?"":ipAddress)+"</Address>\n";  
+			str+="<Gender>"+(gender==null?"":gender)+"</Gender>\n";
+			str+="<city>"+(city==null?"":city)+"</city>\n";  
+			str+="<state>"+(state==null?"":state)+"</state>\n";  
+			str+="<country>"+(country==null?"":country)+"</country>\n";  
+			str+="<dob>"+(dob==null?"":dob)+"</dob>\n";  
+			str+="<pin>"+(pin==null?"":pin)+"</pin>\n"; 
+			str+="<frgt_psswrd_qstn_vc>"+(secQues==null?"":secQues)+"</frgt_psswrd_qstn_vc>\n";
+			str+="<frgt_psswrd_answr_vc>"+(secAns==null?"":secAns)+"</frgt_psswrd_answr_vc>\n";
+			str+="<mobilephone>"+(mobile==null?"":mobile)+"</mobilephone>\n";
 			str+="<Referrel></Referrel>\n";
 			str+="<UserType>0</UserType>\n"; 
 			str+="</Table>";

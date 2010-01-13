@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import com.fieldvalidation.validators.FieldValidator;
 import com.timesgroup.sso.constants.SSOConstants;
+import com.timesgroup.sso.utils.PasswordCheck;
 import com.timesgroup.sso.utils.SSOUtils;
 
 
@@ -30,7 +31,7 @@ public class CheckPasswordStrengthServlet extends HttpServlet {
 			return;
 		}
 		
-		responseWriter.write(SSOConstants.XML_URL+"<string>"+SSOUtils.getPasswordStrength()+"</string>");
+		responseWriter.write(SSOConstants.XML_URL+"<string>"+PasswordCheck.CheckPasswordStrength(password)+"</string>");
 		
 	}
 }

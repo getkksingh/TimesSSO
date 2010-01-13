@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 
 import com.timesgroup.sso.constants.SSOConstants;
 import com.timesgroup.sso.hibernate.apis.ITimesDataAccessManager;
+import com.timesgroup.sso.utils.SSOUtils;
 
 public class UpdateITimesIdServlet extends HttpServlet{
 	
@@ -41,7 +42,7 @@ public class UpdateITimesIdServlet extends HttpServlet{
 		}
 		
 		
-		if(userId!=null && !userId.matches(SSOConstants.VALID_USERID_PATTERN)){
+		if(userId!=null && !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
 			
 			mylogger.error(SSOConstants.UpdateITimesId.ERROR_MESSAGE_INVALIDUSERID);
 			responseWriter.write(SSOConstants.UpdateITimesId.ERROR_MESSAGE_INVALIDUSERID);

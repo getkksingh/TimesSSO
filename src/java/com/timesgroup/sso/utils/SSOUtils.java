@@ -106,9 +106,5 @@ public class SSOUtils {
 		
 		return new BigInteger(UUID.randomUUID().toString().replaceAll("-", ""), 16).toString(36);
 	}
-	
-	public static String getPasswordStrength(){
-		
-		return "medium";
-	}
+
 }

@@ -241,7 +241,10 @@
 		<servlet-class>com.timesgroup.sso.servlets.emailauth.CheckPasswordStrengthUserServlet</servlet-class>
 	</servlet>
 	
-	
+	<servlet>
+		<servlet-name>ActivateEmailId</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.emailauth.ActivateEmailIdServlet</servlet-class>
+	</servlet>
 	
 	
 	
@@ -349,6 +352,10 @@
 		<url-pattern>/CheckPasswordStrengthUser</url-pattern>
    </servlet-mapping>
    
+	<servlet-mapping>
+		<servlet-name>ActivateEmailId</servlet-name>
+		<url-pattern>/ActivateEmailId</url-pattern>
+   </servlet-mapping>
    
    
    

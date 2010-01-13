@@ -1,5 +1,7 @@
 package com.timesgroup.sso.constants;
 
+import com.timesgroup.sso.utils.SSOUtils;
+
 
 public class SSOConstants {
 
@@ -8,6 +10,7 @@ public class SSOConstants {
 	public final static String VALID_EMAILID_PATTERN=".+@.+\\.[a-z]+";
 	public final static String VALID_INTEGER_PATTERN="[0-9]*";
 	public final static String ServerURL="http://www.itimes.com/login.php?hs=";
+	public final static String USER_ID_NOT_PERMISSIBLE_CHARACTERS = "@()[]{}^*=%!;,:|<>?";
 	
 	public final class CheckUserCredentialsServletConstants {
 
@@ -260,6 +263,7 @@ public class SSOConstants {
 		public final static String MESSAGE_INVALID_EMAILID="INVALID EMAILID";
 		public final static String MESSAGE_SUCCESSFUL_INSERTION="RECORD INSERTED SUCCESSFULLY";
 		public final static String MESSAGE_ERROR_INSERTION="UNABLE TO INSERTED RECORD";
+		public final static String USER_ID_NOT_PERMISSIBLE_CHARACTERS = "@()[]{}^*=%!;,:|<>?";
 		public final static String INVALID_USERID="UserId is not valid.Either no value provided for userid or userid has special characters.";
 		public final static String ERROR_MESSAGE_INVALIDUSERID = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Error><ErrCode>E101</ErrCode>" +
 		"<Message>Invalid userid</Message><Exception>Either no value provided for userid or userid has special characters.</Exception></Error>";

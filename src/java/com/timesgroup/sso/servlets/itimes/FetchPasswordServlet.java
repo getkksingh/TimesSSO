@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import com.timesgroup.sso.constants.SSOConstants;
 import com.timesgroup.sso.hibernate.apis.ITimesDataAccessManager;
 import com.timesgroup.sso.utils.CryptoUtility;
+import com.timesgroup.sso.utils.SSOUtils;
 
 public class FetchPasswordServlet extends HttpServlet {
 	
@@ -37,7 +38,7 @@ public class FetchPasswordServlet extends HttpServlet {
 			return;
 		}
 		
-		if(userId!=null && !userId.matches(SSOConstants.VALID_USERID_PATTERN)){
+		if(userId!=null && !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
 			
 			mylogger.error(SSOConstants.FetchPassword.MESSAGE_INVALID_USERID);
 			responseWriter.write(SSOConstants.FetchPassword.ERROR_MESSAGE_INVALIDUSERID);

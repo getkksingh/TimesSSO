@@ -9,7 +9,6 @@ import org.hibernate.Transaction;
 import com.timesgroup.sso.constants.SSOConstants;
 import com.timesgroup.sso.hibernate.mapping.AliasMapping;
 import com.timesgroup.sso.hibernate.mapping.UserRegistration;
-import com.timesgroup.sso.hibernate.mapping.UserRegistrationItimes;
 import com.timesgroup.sso.utils.HibernateUtil;
 
 public class AliasAuthDataAccessManager {
@@ -44,10 +43,11 @@ public class AliasAuthDataAccessManager {
 		return 0;
 	}
 	
-	public String ifEmailIdAvailable(String emailId){
+	public AliasMapping ifEmailIdAvailable(String emailId){
 		
 		Session session = null;
 		Transaction tx = null;
+		AliasMapping aliasMapping = null;
 		
 		try {
 				session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -60,15 +60,13 @@ public class AliasAuthDataAccessManager {
 				
 				if (result != null && result.size()>0){
 					
-					AliasMapping aliasMapping = (AliasMapping) result.get(0);
-					return aliasMapping.getUserProfile();
+					aliasMapping = (AliasMapping) result.get(0);
 				}
-				
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
 		}
-		return "";
+		return aliasMapping;
 	}
 	
 	public boolean updateUserProfile(String emailId,String firstName,
@@ -166,8 +164,6 @@ public class AliasAuthDataAccessManager {
 				if (result != null && result.size()==1){
 					
 					userRegistration = (UserRegistration) result.get(0);
-					System.out
-							.println("AliasAuthDataAccessManager.getUserProfile()"+userRegistration);
 				}
 		} catch (Exception e) {
 			tx.rollback();
@@ -177,43 +173,43 @@ public class AliasAuthDataAccessManager {
 		return userRegistration;
 	}
 	
-
-    public static void main(String[] args) {
+	public static void main(String[] args) {
     	
 		AliasAuthDataAccessManager aliasAuthDataAccessManager=new AliasAuthDataAccessManager();
 		UserRegistration userRegistration=aliasAuthDataAccessManager.getUserProfile("nitin@gmail.com");
 		
-		System.out.println("AliasAuthDataAccessManager.enclosing_method()"+userRegistration);
+		/*System.out.println("AliasAuthDataAccessManager.enclosing_method()"+userRegistration);
 		if(userRegistration!=null){
 			
 			String str=SSOConstants.XML_URL+"<NewDataSet>\n<Table>\n";
-			if(userRegistration.getUser_id()!=null)
-				str+="<usr_id_vc>"+userRegistration.getUser_id()+"</usr_id_vc>\n"; 
-			if(userRegistration.getUser_id()!=null)
-			str+="<eml_vc>"+userRegistration.getEmail_id()+"</eml_vc>\n"; 
-			if(userRegistration.getPassword()!=null)
-			str+="<psswrd_vc>"+userRegistration.getPassword()+"</psswrd_vc>\n"; 
-			str+="<CRT_DT>"+userRegistration.getCreate_date()+"</CRT_DT>\n"; 
-			str+="<DateRegistered>"+userRegistration.getCreate_date()+"</DateRegistered>\n"; 
-			str+="<site_reg>"+userRegistration.getRegistration_site()+"</site_reg>\n"; 
-			str+="<frst_nm_vc>"+userRegistration.getFirst_name()+"</frst_nm_vc>\n";  
-			str+="<lst_nm_vc>"+userRegistration.getLast_name()+"</lst_nm_vc>\n";  
-			str+="<Address>"+userRegistration.getAddress()+"</Address>\n";  
-			str+="<Gender>"+userRegistration.getGender()+"</Gender>\n";
-			str+="<city>"+userRegistration.getCity()+"</city>\n";  
-			str+="<state>"+userRegistration.getState()+"</state>\n";  
-			str+="<country>"+userRegistration.getCountry()+"</country>\n";  
-			str+="<dob>"+userRegistration.getDob()+"</dob>\n";  
-			str+="<pin>"+userRegistration.getPin()+"</pin>\n"; 
-			str+="<frgt_psswrd_qstn_vc>"+userRegistration.getForget_password_question()+"</frgt_psswrd_qstn_vc>\n";
-			str+="<frgt_psswrd_answr_vc>"+userRegistration.getForget_password_answer()+"</frgt_psswrd_answr_vc>\n";
-			str+="<mobilephone>"+userRegistration.getMobilephone()+"</mobilephone>\n";
-			str+="<Referrel>"+userRegistration.getReferrel()+"</Referrel>\n";
+			str+="<usr_id_vc>"+ (userRegistration.getUser_id()==null ? "" : userRegistration.getUser_id())+"</usr_id_vc>\n"; 
+			str+="<eml_vc>"+(userRegistration.getEmail_id()==null ? "" :userRegistration.getEmail_id())+"</eml_vc>\n"; 
+			str+="<psswrd_vc>"+(userRegistration.getPassword()==null ? "" :userRegistration.getPassword())+"</psswrd_vc>\n"; 
+			str+="<CRT_DT>"+(userRegistration.getCreate_date()==null ? "" :userRegistration.getCreate_date())+"</CRT_DT>\n"; 
+			str+="<DateRegistered>"+(userRegistration.getCreate_date()==null ? "" :userRegistration.getCreate_date())+"</DateRegistered>\n";
+			str+="<site_reg>"+(userRegistration.getRegistration_site()==null ? "" :userRegistration.getRegistration_site())+"</site_reg>\n"; 
+			str+="<frst_nm_vc>"+(userRegistration.getFirst_name()==null ? "" :userRegistration.getFirst_name())+"</frst_nm_vc>\n";  
+			str+="<lst_nm_vc>"+(userRegistration.getLast_name()==null ? "" :userRegistration.getLast_name())+"</lst_nm_vc>\n";  
+			str+="<Address>"+(userRegistration.getAddress()==null ? "" :userRegistration.getAddress())+"</Address>\n";  
+			str+="<Gender>"+(userRegistration.getGender()==null ? "" :userRegistration.getGender())+"</Gender>\n";
+			str+="<city>"+(userRegistration.getCity()==null ? "" :userRegistration.getCity())+"</city>\n";  
+			str+="<state>"+(userRegistration.getState()==null ? "" :userRegistration.getState())+"</state>\n";  
+			str+="<country>"+(userRegistration.getCountry()==null ? "" :userRegistration.getCountry())+"</country>\n";  
+			str+="<dob>"+(userRegistration.getDob()==null ? "" :userRegistration.getDob())+"</dob>\n";  
+			str+="<pin>"+(userRegistration.getPin()==null ? "" :userRegistration.getPin())+"</pin>\n"; 
+			str+="<frgt_psswrd_qstn_vc>"+(userRegistration.getForget_password_question()==null ? "" :userRegistration.getForget_password_question())+"</frgt_psswrd_qstn_vc>\n";
+			str+="<frgt_psswrd_answr_vc>"+(userRegistration.getForget_password_answer()==null ? "" :userRegistration.getForget_password_answer())+"</frgt_psswrd_answr_vc>\n";
+			str+="<mobilephone>"+(userRegistration.getMobilephone()==null ? "" :userRegistration.getMobilephone())+"</mobilephone>\n";
+			str+="<Referrel>"+(userRegistration.getReferrel()==null ? "" :userRegistration.getReferrel())+"</Referrel>\n";
 			str+="<UserType>1</UserType>\n"; 
 			str+="</Table>\n";
 			str+="</NewDataSet>\n";
 			
 			System.out.println("AliasAuthDataAccessManager.main()"+str);
-		}
+		}*/
+		
+		AliasMapping aliasMapping = aliasAuthDataAccessManager.ifEmailIdAvailable("nitin123@gmail.com");
+		
+		System.out.println("AliasAuthDataAccessManager.main()"+aliasMapping.getUserType());
 	}	
 }

@@ -43,12 +43,7 @@ public class UpdateUserProfileServlet extends HttpServlet {
 		
 		/*****Validating each field****/
 		if(!FieldValidator.isValidField(FieldValidator.FIELDNAME_EMAILID,FieldValidator.FIELDTYPE_EMAILID, emailId, true) ||
-		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_FIRSTNAME,FieldValidator.FIELDTYPE_NAME, firstName, true) ||
-		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_LASTNAME,FieldValidator.FIELDTYPE_NAME, lastName, true) ||
-		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_DOB,FieldValidator.FIELDTYPE_DOB, dob, true) ||
-		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_PASSWORD,FieldValidator.FIELDTYPE_PASSWORD, password, true) ||
-		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_MOBILENUMBER,FieldValidator.FIELDTYPE_MOBILENUMBER, mobile, true)
-		   ){
+		   !FieldValidator.isValidField(FieldValidator.FIELDNAME_PASSWORD,FieldValidator.FIELDTYPE_PASSWORD, password, true)){
 			
 			responseWriter.write(FieldValidator.errorMsg);
 			return;
