@@ -1,15 +1,22 @@
 package com.timesgroup.sso.utils;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class SSOUtils {
 	
@@ -64,5 +71,44 @@ public class SSOUtils {
 
 		
 		return outPutMap ;
+	}
+	
+	public static PrintWriter getPrintWriter(HttpServletResponse response) {
+
+		PrintWriter responseWriter = null;
+
+		try {
+			responseWriter = response.getWriter();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		return responseWriter;
+	}
+	
+	public static Date getDate(String date){
+		
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		Date parsedDate=null;
+		try{
+		     parsedDate = df.parse("23/09/1987");           
+		     
+		} catch (ParseException e)
+		{
+		     e.printStackTrace();
+		}
+		
+		return parsedDate;
+	}
+	
+	public static String getUUID(){
+		
+		return new BigInteger(UUID.randomUUID().toString().replaceAll("-", ""), 16).toString(36);
+	}
+	
+	public static String getPasswordStrength(){
+		
+		return "medium";
 	}
 }

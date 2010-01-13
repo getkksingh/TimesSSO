@@ -226,6 +226,22 @@
 		<servlet-class>com.timesgroup.sso.servlets.emailauth.CheckEmailIdAvailabilityServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>GetXMLUserProfile</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.emailauth.GetXMLUserProfileServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CheckPasswordStrength</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.emailauth.CheckPasswordStrengthServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CheckPasswordStrengthUser</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.emailauth.CheckPasswordStrengthUserServlet</servlet-class>
+	</servlet>
+	
+	
 	
 	
 	
@@ -318,6 +334,20 @@
 		<url-pattern>/isEmailIdAvailable</url-pattern>
    </servlet-mapping>
    
+   <servlet-mapping>
+		<servlet-name>GetXMLUserProfile</servlet-name>
+		<url-pattern>/GetXMLUserProfile</url-pattern>
+   </servlet-mapping>
+   
+    <servlet-mapping>
+		<servlet-name>CheckPasswordStrength</servlet-name>
+		<url-pattern>/CheckPasswordStrength</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+		<servlet-name>CheckPasswordStrengthUser</servlet-name>
+		<url-pattern>/CheckPasswordStrengthUser</url-pattern>
+   </servlet-mapping>
    
    
    

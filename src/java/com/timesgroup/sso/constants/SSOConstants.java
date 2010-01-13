@@ -631,5 +631,42 @@ public class SSOConstants {
 		public final static String PARAM_EMAILID = "emailid";
 	}
 	
+	public final class UpdateIntegraUserProfile{
+		
+		public final static String PARAM_EMAILID = "emailid";
+		public final static String PARAM_FIRSTNAME = "firstname";
+		public final static String PARAM_LASTNAME = "lastname";
+		public final static String PARAM_PASSWORD = "password";
+		public final static String PARAM_DOB = "dob";
+		public final static String PARAM_IPADDRESS = "ipaddress";
+		public final static String PARAM_SITEREG = "sitereg";
+		public final static String PARAM_GENDER = "gender";
+		public final static String PARAM_CITY = "city";
+		public final static String PARAM_STATE = "state";
+		public final static String PARAM_COUNTRY = "country";
+		public final static String PARAM_SECQUEST = "secques";
+		public final static String PARAM_SECANS = "secans";
+		public final static String PARAM_MOBILE = "mobile";
+		public final static String PARAM_PIN = "pin";
+	}
 	
+	public final class ActivateEmailId{
+		
+		public final static String PARAM_HASHCODE = "hashcode";
+	}
+	
+	public final class GetXMLUserProfileinXML{
+		
+		public final static String PARAM_EMAILID = "emailid";
+	}
+	
+	public final class CheckPasswordStrength{
+		
+		public final static String PARAM_PASSWORD = "password";
+	}
+	
+	public final class CheckPasswordStrengthUser{
+		
+		public final static String PARAM_EMAILID = "emailid";
+	}
 }

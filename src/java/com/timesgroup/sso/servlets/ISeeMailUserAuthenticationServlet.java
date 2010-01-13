@@ -23,7 +23,7 @@ public class ISeeMailUserAuthenticationServlet extends HttpServlet{
 	
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException {
-
+ 
 		final Logger mylogger = Logger.getLogger(ISeeMailUserAuthenticationServlet.class);
 
 		String userId = request.getParameter(SSOConstants.ISeeMailUserAuthentication.PARAM_USERID);
@@ -46,12 +46,7 @@ public class ISeeMailUserAuthenticationServlet extends HttpServlet{
 			return;
 		}
 		
-		if(userId!=null && !userId.matches(SSOConstants.VALID_USERID_PATTERN)){
-			
-			mylogger.error(SSOConstants.ISeeMailUserAuthentication.INVALID_USERID);
-			responseWriter.write(SSOConstants.ISeeMailUserAuthentication.ERROR_MESSAGE_INVALIDUSERID);
-			return;
-		}
+		
 		
 		DataAccessManager dataAccessManager = new DataAccessManager();
 		String  str = dataAccessManager.getPasswordfromUserId(userId.toLowerCase());
@@ -65,17 +60,18 @@ public class ISeeMailUserAuthenticationServlet extends HttpServlet{
 		}else{
 			
 			/*COMPARE THE TWO PASSWORDS*/
+			String passwordhash  = null ;
 			MD5 md5;
 			try {
 				md5 = MD5.getInstance();
-				str=md5.hashData(str.getBytes());
+				passwordhash = md5.hashData(str.getBytes());
 				
 			} catch (NoSuchAlgorithmException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
-			if(!password.equals(str)){
+			if(!password.equals(passwordhash)){
 				mylogger.warn("Authentication Failed: URL password not matched with  the database password.");
 				responseWriter.write(SSOConstants.XML_URL+"<response>\n<status>false</status>\n</response>\n");
 				return;

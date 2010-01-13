@@ -14,8 +14,8 @@ import org.apache.log4j.Logger;
 import com.fieldvalidation.validators.FieldValidator;
 import com.timesgroup.sso.constants.ErrorMessages;
 import com.timesgroup.sso.constants.SSOConstants;
-import com.timesgroup.sso.constants.SSOUtils;
 import com.timesgroup.sso.hibernate.apis.AliasAuthDataAccessManager;
+import com.timesgroup.sso.utils.SSOUtils;
 
 public class InsertUserProfileServlet extends HttpServlet{
 	
@@ -64,10 +64,10 @@ public class InsertUserProfileServlet extends HttpServlet{
 		}
 		
 		AliasAuthDataAccessManager aliasAuthDataAccessManager=new AliasAuthDataAccessManager();
-		int status = aliasAuthDataAccessManager.ifEmailIdAvailable(emailId.toLowerCase());
+		String userProfile = aliasAuthDataAccessManager.ifEmailIdAvailable(emailId.toLowerCase());
 		
 		//emailid already exists
-		if(status==1){
+		if(userProfile.trim().length()>0){
 			
 			responseWriter.write(ErrorMessages.XMLMESSAGE_ERROR_EMAILID_EXISTS);
 			return;
@@ -78,7 +78,7 @@ public class InsertUserProfileServlet extends HttpServlet{
 		String hashcode= new String(base64.encode((userId+":"+emailId).getBytes()));
 		Date currentDate=new Date();
 		
-		status = aliasAuthDataAccessManager.insertUserProfile(emailId.toLowerCase(),userId, queryString , hashcode, currentDate);
+		int status = aliasAuthDataAccessManager.insertUserProfile(emailId.toLowerCase(),userId, queryString , hashcode, currentDate);
 		
 		if(status==0){
 		

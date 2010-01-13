@@ -10,18 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.fieldvalidation.validators.FieldValidator;
-import com.timesgroup.sso.constants.ErrorMessages;
 import com.timesgroup.sso.constants.SSOConstants;
 import com.timesgroup.sso.hibernate.apis.AliasAuthDataAccessManager;
 import com.timesgroup.sso.utils.SSOUtils;
 
-public class CheckEmailIdAvailabilityServlet extends HttpServlet{
-	
+public class CheckPasswordStrengthUserServlet extends HttpServlet {
+
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException {
 
-		final Logger mylogger = Logger.getLogger(InsertUserProfileServlet.class);
-		String emailId = request.getParameter(SSOConstants.InsertIntegraUserProfile.PARAM_EMAILID);
+		final Logger mylogger = Logger.getLogger(CheckPasswordStrengthUserServlet.class);
+		String emailId = request.getParameter(SSOConstants.CheckPasswordStrengthUser.PARAM_EMAILID);
+		
 		PrintWriter responseWriter = SSOUtils.getPrintWriter(response);
 		
 		boolean isValidEmailId=FieldValidator.isValidField(FieldValidator.FIELDNAME_EMAILID, 
@@ -34,16 +34,8 @@ public class CheckEmailIdAvailabilityServlet extends HttpServlet{
 		}
 		
 		AliasAuthDataAccessManager aliasAuthDataAccessManager=new AliasAuthDataAccessManager();
-		String userProfile = aliasAuthDataAccessManager.ifEmailIdAvailable(emailId.toLowerCase());
+		//String userProfile = aliasAuthDataAccessManager.getPasswordByEmailId(emailId.toLowerCase());
 		
-		if(userProfile.trim().length()>0){
-			
-			mylogger.error(ErrorMessages.MESSAGE_EMAILID_EXISTS);
-			responseWriter.write(ErrorMessages.XML_URL+"<status>0</status>");
-		}
-		
-		responseWriter.write(ErrorMessages.XML_URL+"<status>1</status>");
-		
-		return;		
+		responseWriter.write(SSOConstants.XML_URL+"<string>"+SSOUtils.getPasswordStrength()+"</string>");
 	}
 }

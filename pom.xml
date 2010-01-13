@@ -56,7 +56,7 @@
 		<repository>
 			<id>localrepository</id>
 			<name>This is my local repository will we start using maven local proxy server</name>
-			<url>http://10.157.221.119</url>
+			<url>http://10.157.221.70</url>
 		</repository>
 		
 	</repositories>
