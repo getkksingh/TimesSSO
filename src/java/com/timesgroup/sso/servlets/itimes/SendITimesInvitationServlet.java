@@ -16,10 +16,10 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 
 import com.timesgroup.sso.constants.SSOConstants;
-import com.timesgroup.sso.constants.TimesMail;
 import com.timesgroup.sso.hibernate.apis.ITimesDataAccessManager;
 import com.timesgroup.sso.hibernate.mapping.UserInvitation;
 import com.timesgroup.sso.utils.SSOUtils;
+import com.timesgroup.sso.utils.TimesMail;
 
 public class SendITimesInvitationServlet extends HttpServlet{
 	
@@ -48,7 +48,7 @@ public class SendITimesInvitationServlet extends HttpServlet{
 		}
 		
 		
-		if(userId!=null && !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
+		if(userId!=null && SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
 			
 			mylogger.error(SSOConstants.SendITimesInvitation.ERROR_MESSAGE_INVALIDUSERID);
 			responseWriter.write(SSOConstants.SendITimesInvitation.ERROR_MESSAGE_INVALIDUSERID);

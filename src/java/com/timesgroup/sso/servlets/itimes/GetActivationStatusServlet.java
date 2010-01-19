@@ -38,7 +38,7 @@ public class GetActivationStatusServlet extends HttpServlet{
 			return;
 		}
 		
-		if(userId!=null && !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
+		if(userId!=null && SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
 			
 			mylogger.error(SSOConstants.GetActivationStatus.MESSAGE_INVALID_USERID);
 			responseWriter.write(SSOConstants.GetActivationStatus.ERROR_MESSAGE_INVALIDUSERID);

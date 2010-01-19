@@ -42,7 +42,7 @@ public class UpdateITimesIdServlet extends HttpServlet{
 		}
 		
 		
-		if(userId!=null && !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
+		if(userId!=null && SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
 			
 			mylogger.error(SSOConstants.UpdateITimesId.ERROR_MESSAGE_INVALIDUSERID);
 			responseWriter.write(SSOConstants.UpdateITimesId.ERROR_MESSAGE_INVALIDUSERID);

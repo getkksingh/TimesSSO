@@ -52,6 +52,4 @@
         <property name="profile_status" column="PROFILE_STATUS" length="1" type="java.lang.Character"/>
          -->
     </class>
-
-
 </hibernate-mapping>

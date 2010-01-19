@@ -54,7 +54,7 @@ public class GetAvailableUserIdsServlet extends HttpServlet {
 		}
 
 		if (userId != null
-				&& !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)) {
+				&& SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)) {
 
 			mylogger
 					.error(SSOConstants.GetAvailableUserIds.MESSAGE_INVALID_USERID);

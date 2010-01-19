@@ -42,7 +42,7 @@ public class UserActivityManager
 			useractivities=new UserActivityVector();
         Date now = new Date();
         UserActivity userActivity = 
-        		new UserActivity(this.user_id, this.siteid, now,this.remoteIP, this.activity);
+        		new UserActivity(this.user_id, this.siteid, now,this.remoteIP, this.activity, this.siteid);
         
         useractivities.addElement(userActivity);
         

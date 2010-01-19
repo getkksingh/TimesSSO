@@ -611,6 +611,27 @@ public class SSOConstants {
 		"<Message>Insertion error</Message><Exception>Error while inserting record.</Exception></Error>";
 	}
 	
+	public final class Login{
+		
+		public final static String PARAM_USERID = "login";
+		public final static String PARAM_PASSWORD = "passwd";
+		public final static String PARAM_REDIRECTURL = "ru";
+		public final static String PARAM_IS = "IS";
+		public final static String PARAM_NS = "NS";
+		public final static String PARAM_HS = "HS";
+		public final static String ERROR_WITH_LOGIN_REQUEST_PARAMETERS = "INVALID PARAMETERS";
+		public final static String SUCCESS_RU = "http://www.itimes.com/homepage.php";
+		
+		public final static String MSCSAUTH_COOKIE_NAME = "MSCSAuth";
+		public final static String MSCSAUTHDETAIL_COOKIE_NAME = "MSCSAuthDetail";
+		public final static String MSCSAUTHDETAILS_COOKIE_NAME = "MSCSAuthDetails";
+		public final static String VISITEDSITES_COOKIE_NAME = "VisitedSites";
+		public final static String COOKIE_DOMAIN_NAME = ".itimes.com";
+		public final static String COOKIE_PATH = "/";
+		
+		
+	}
+	
 	public final class InsertIntegraUserProfile{
 		
 		public final static String PARAM_EMAILID = "emailid";
@@ -673,4 +694,7 @@ public class SSOConstants {
 		
 		public final static String PARAM_EMAILID = "emailid";
 	}
+	
+	
+	
 }

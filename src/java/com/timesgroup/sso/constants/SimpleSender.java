@@ -3,6 +3,8 @@ package com.timesgroup.sso.constants;
 import javax.mail.*;
 import javax.mail.internet.*;
 
+import com.timesgroup.sso.utils.TimesMail;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;

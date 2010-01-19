@@ -38,7 +38,7 @@ public class FetchPasswordServlet extends HttpServlet {
 			return;
 		}
 		
-		if(userId!=null && !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
+		if(userId!=null && SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
 			
 			mylogger.error(SSOConstants.FetchPassword.MESSAGE_INVALID_USERID);
 			responseWriter.write(SSOConstants.FetchPassword.ERROR_MESSAGE_INVALIDUSERID);

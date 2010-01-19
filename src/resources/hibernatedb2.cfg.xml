@@ -8,11 +8,11 @@
     <session-factory>
 
         <!-- Database connection settings -->
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://192.168.61.22:3306/timessso</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password">root</property>
-       
+        <property name="connection.driver_class">com.ibm.db2.jcc.DB2Driver</property>
+        <property name="connection.url">jdbc:db2://10.157.210.101:50000/sso</property>
+        <property name="connection.username">db2inst1</property>
+        <property name="connection.password">db2inst1</property>
+        <property name="hibernate.default_schema">SSOSP</property>
         
          <property name="hibernate.dbcp.maxActive">8</property>
          <property name="hibernate.dbcp.maxIdle">8</property>
@@ -26,39 +26,35 @@
         <property name="hibernate.c3p0.timeout">1800</property>
         <property name="hibernate.c3p0.max_statements">50</property>
         
-  		-->
+  -->
         
 
         <!-- JDBC connection pool (use the built-in) 
         <property name="connection.pool_size">2</property>-->
-        <property name="jdbc.batch_size">10</property>
-        <property name="hibernate.cache.use_second_level_cache">false</property>
-       
+
         <!-- SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="dialect">org.hibernate.dialect.DB2Dialect</property>
 
         <!-- Enable Hibernate's current session context -->
         <property name="current_session_context_class">thread</property>
-        
 
         <!-- Disable the second-level cache  -->
         <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 
-        <!-- Echo all executed SQL to stdout 
-        <property name="show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>  
-        -->
-        <!-- Drop and re-create the database schema on startup -->
+        <!-- Echo all executed SQL to stdout -->
+       <property name="show_sql">true</property> 
+        
+   	   <property name="hibernate.format_sql">true</property>
+       
+       <!-- Drop and re-create the database schema on startup -->
        <property name="hbm2ddl.auto">validate</property>
-       <mapping resource="com/timesgroup/sso/hibernate/mapping/user_registration_itimes.hbm.xml"/>
-       <mapping resource="com/timesgroup/sso/hibernate/mapping/user_mapping_itimes.hbm.xml"/>   
-       <mapping resource="com/timesgroup/sso/hibernate/mapping/user_invitation.hbm.xml"/>  
-       <mapping resource="com/timesgroup/sso/hibernate/mapping/userid_generator.hbm.xml"/>
-       <mapping resource="com/timesgroup/sso/hibernate/mapping/user_activity.hbm.xml"/> 
-       <!--<mapping resource="com/timesgroup/sso/hibernate/mapping/user_interest.hbm.xml"/>   
-      <mapping resource="com/timesgroup/sso/hibernate/mapping/user_ownership.hbm.xml"/>   
- 	   -->    
- 	   
+       <mapping resource="com/timesgroup/sso/hibernate/mapping/user_registration.hbm.xml"/>   
+       <mapping resource="com/timesgroup/sso/hibernate/mapping/user_interest.hbm.xml"/>   
+       <mapping resource="com/timesgroup/sso/hibernate/mapping/user_ownership.hbm.xml"/>  
+       <mapping resource="com/timesgroup/sso/hibernate/mapping/alias_mapping.xml"/>   
+ 	 <!--   <mapping resource="com/timesgroup/sso/hibernate/mapping/user_activity.hbm.xml"/>-->    
+
+
     </session-factory>
 
 </hibernate-configuration>

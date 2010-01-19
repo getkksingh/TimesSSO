@@ -42,7 +42,7 @@ public class AddUserMappingServlet extends HttpServlet{
 			return;
 		}
 		
-		if(userId!=null && !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
+		if(userId!=null && SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
 			
 			mylogger.error(SSOConstants.AddUserMapping.MESSAGE_INVALID_USERID);
 			responseWriter.write(SSOConstants.AddUserMapping.ERROR_MESSAGE_INVALIDUSERID);

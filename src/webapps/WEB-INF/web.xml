@@ -212,6 +212,20 @@
 		<servlet-class>com.timesgroup.sso.servlets.itimes.ChangePasswordServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>UpdateInActiveUser</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.UpdateInActiveUserServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ITimesLogin</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.LoginServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ITimesLogout</servlet-name>
+		<servlet-class>com.timesgroup.sso.servlets.itimes.LogoutServlet</servlet-class>
+	</servlet>
 	
 	
 	
@@ -362,6 +376,7 @@
    
    
    
+   
 	<servlet-mapping>
 		<servlet-name>GetUserIdByEMailID</servlet-name>
 		<url-pattern>/GetUserIdByEMailID</url-pattern>
@@ -475,8 +490,20 @@
   
   
   
+ <servlet-mapping>
+		<servlet-name>UpdateInActiveUser</servlet-name>
+		<url-pattern>/UpdateInActiveUser</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+		<servlet-name>ITimesLogin</servlet-name>
+		<url-pattern>/ITimesLogin</url-pattern>
+   </servlet-mapping>
  
- 
+ <servlet-mapping>
+		<servlet-name>ITimesLogout</servlet-name>
+		<url-pattern>/ITimesLogout</url-pattern>
+   </servlet-mapping>
  
  
  

@@ -1,14 +1,20 @@
 package com.timesgroup.sso.hibernate.apis;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.timesgroup.sso.constants.SSOConstants;
+import com.timesgroup.sso.hibernate.mapping.UserActivity;
 import com.timesgroup.sso.hibernate.mapping.UserIdGenerator;
 import com.timesgroup.sso.hibernate.mapping.UserInvitation;
 import com.timesgroup.sso.hibernate.mapping.UserMapping;
@@ -788,10 +794,96 @@ public class ITimesDataAccessManager {
 	
 	public int updateInactiveUser(String emailId){
 		
+		Session session = null;
+		Transaction tx = null;
+		mylogger.debug("emailId="+emailId);
 		
-		
+		try {
+			
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			Connection con = session.connection();
+			CallableStatement cs = con.prepareCall("{call sp_UpdateInactiveUser ('"+emailId+"')}");
+			ResultSet result = cs.executeQuery();
+
+			tx.commit();
+	
+			if (result != null){ 
+				return 1;
+			}
+
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}
 		
 		return 0;
+		
+	}
+	
+	public void insertUserActivity(Queue userActivityQueue){
+		
+		Session session = null;
+		Transaction tx = null;
+		
+		try {
+			
+			session = HibernateUtil.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			
+			int i=0;
+			for(int j=0;j<userActivityQueue.size();j++){
+				
+				UserActivity userActivity=(UserActivity)userActivityQueue.remove();
+				i++;
+				
+				session.save(userActivity);
+				if(i%20==0){
+					session.flush();
+			        session.clear();
+				}
+			}
+			
+			tx.commit();
+			session.close();
+		
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		Queue<UserActivity> userActivityQueue=new LinkedList<UserActivity>();
+		
+		for ( int i=1; i<=55; i++ ) {
+			
+			UserActivity userActivity=new UserActivity();
+			userActivity.setActivity("Login");
+			userActivity.setCreated_date(new Date());
+			userActivity.setIp_address("172.28.121.214");
+			userActivity.setUser_id(i+"");
+			userActivityQueue.add(userActivity);
+		}
+		
+		ITimesDataAccessManager iTimesDataAccessManager=new ITimesDataAccessManager();
+		iTimesDataAccessManager.insertUserActivity(userActivityQueue);
+		
+		/*Iterator<UserActivity > iterator=userActivityQueue.iterator();
+		
+		int i=0;
+		while(iterator.hasNext()){
+			
+			UserActivity userActivity=(UserActivity)iterator.next();
+			
+			System.out.println("ITimesDataAccessManager.main()"+userActivity.getUser_id());
+			System.out.println("ITimesDataAccessManager.main()"+userActivity.getIp_address());
+			
+		}*/
+		
+		
 	}
 }
 

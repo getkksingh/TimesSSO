@@ -5,14 +5,15 @@
 
 <hibernate-mapping package="com.timesgroup.sso.hibernate.mapping">
 
-    <class name="UserActivity" table="USERACTIVITIES">  
-     <id name="activity_id" column="ACTIVITY_ID">
-     <generator class="sequence"></generator>
-        </id>  
-        <property name="user_id" column="USR_ID_VC"/>
-        <property name="siteid" column="SITEID"/>
-        <property name="visiteddate" type="timestamp"  column="VISITEDDATE"/>
-        <property name="ipaddress" column="IPADDRESS"/>
-        <property name="activity" column="ACTIVITY"/>
+    <class name="UserActivity" table="user_activity">  
+     	<id name="id" column="id">
+     		<generator class="increment" />
+        </id> 
+        <property name="user_id" column="user_id"/>
+        <property name="site_id" column="site_id"/>
+        <property name="created_date" type="timestamp"  column="created_date"/>
+        <property name="ip_address" column="ip_address"/>
+        <property name="activity" column="activity"/>
+        <property name="page_url" column="page_url"/>
     </class>
 </hibernate-mapping>

@@ -36,7 +36,7 @@ public class CheckUserIdExistsServlet extends HttpServlet{
 			return;
 		}
 		
-		if(userId!=null && !SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
+		if(userId!=null && SSOUtils.containsSpecialCharacter(userId,SSOConstants.USER_ID_NOT_PERMISSIBLE_CHARACTERS)){
 			
 			mylogger.error(SSOConstants.CheckUserIdExists.INVALID_USERID);
 			responseWriter.write(SSOConstants.CheckUserIdExists.ERROR_MESSAGE_INVALIDUSERID);
