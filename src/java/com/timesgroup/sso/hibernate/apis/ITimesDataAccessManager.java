@@ -20,6 +20,7 @@ import com.timesgroup.sso.hibernate.mapping.UserInvitation;
 import com.timesgroup.sso.hibernate.mapping.UserMapping;
 import com.timesgroup.sso.hibernate.mapping.UserRegistrationItimes;
 import com.timesgroup.sso.utils.HibernateUtil;
+import com.timesgroup.sso.utils.UserActivityLogger;
 
 public class ITimesDataAccessManager {
 
@@ -821,20 +822,31 @@ public class ITimesDataAccessManager {
 		
 	}
 	
-	public void insertUserActivity(Queue userActivityQueue){
+	public void insertUserActivity(UserActivityLogger userActivityLogger){
 		
 		Session session = null;
 		Transaction tx = null;
+		
+		System.out.println("ITimesDataAccessManager.insertUserActivity()"+userActivityLogger.getQueueSize());
 		
 		try {
 			
 			session = HibernateUtil.getSessionFactory().openSession();
 			tx = session.beginTransaction();
-			
 			int i=0;
-			for(int j=0;j<userActivityQueue.size();j++){
+			
+			for(int j=0;userActivityLogger.getQueueSize()>0;j++){
 				
-				UserActivity userActivity=(UserActivity)userActivityQueue.remove();
+				/*if(userActivityLogger.getQueueSize()<=25){
+				
+					System.err.println("ITimesDataAccessManager.insertUserActivity() GOING TO SHUTDOWN");
+					System.out.println("ITimesDataAccessManager.insertUserActivity()"+userActivityLogger.getQueueSize() );
+					System.exit(0);
+				}*/
+					
+				
+				UserActivity userActivity=(UserActivity) userActivityLogger.deQueueUserActivity();
+				//System.out.println("ITimesDataAccessManager.insertUserActivity()"+j+" size="+userActivityQueue.size());
 				i++;
 				
 				session.save(userActivity);
@@ -868,8 +880,8 @@ public class ITimesDataAccessManager {
 			userActivityQueue.add(userActivity);
 		}
 		
-		ITimesDataAccessManager iTimesDataAccessManager=new ITimesDataAccessManager();
-		iTimesDataAccessManager.insertUserActivity(userActivityQueue);
+		/*ITimesDataAccessManager iTimesDataAccessManager=new ITimesDataAccessManager();
+		iTimesDataAccessManager.insertUserActivity(userActivityQueue);*/
 		
 		/*Iterator<UserActivity > iterator=userActivityQueue.iterator();
 		

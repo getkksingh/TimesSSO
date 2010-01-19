@@ -11,7 +11,7 @@ import com.timesgroup.sso.hibernate.mapping.UserActivity;
 
 public class UserActivityLogger implements Runnable{
 
-	public static Queue<UserActivity> userActivityQueue = new LinkedList<UserActivity>();
+	private static Queue<UserActivity> userActivityQueue = new LinkedList<UserActivity>();
 	final Logger mylogger = Logger.getLogger(TimesMail.class);
 	public static UserActivityLogger userActivityLogger = null;
 	
@@ -28,12 +28,11 @@ public class UserActivityLogger implements Runnable{
 	public void run() {
 		
 		while(true){
+			
 			if(userActivityQueue!=null && userActivityQueue.size()>=20){
-				if(userActivityQueue.size()<=50)
-					System.exit(1);
-				System.out.println("UserActivityLogger "+userActivityQueue.size());
+				
 				ITimesDataAccessManager iTimesDataAccessManager=new ITimesDataAccessManager();
-				iTimesDataAccessManager.insertUserActivity(userActivityQueue);
+				iTimesDataAccessManager.insertUserActivity(userActivityLogger);
 			}
 			
 		try {
@@ -57,16 +56,16 @@ public class UserActivityLogger implements Runnable{
 		return userActivityQueue.remove();
 	}
 	
+	public synchronized int getQueueSize(){
+		
+		return userActivityQueue.size();
+	}
+	
     public static void main(String[] args) {
 		
-		UserActivityLogger userActivityLogger = UserActivityLogger.getInstance();
-		new Thread(userActivityLogger).start();
-		System.out.println("Daemon Started!!!");
-		
-		ShutDownHook shutDownHook = new ShutDownHook();
-		new Thread(shutDownHook).start();
-		System.out.println("Hook Started!!!");
-		Runtime.getRuntime().addShutdownHook( shutDownHook );
+    	
+    	
+    	UserActivityLogger userActivityLogger = UserActivityLogger.getInstance();
 		
 		for(int i=0;i<100;i++){
 			 
@@ -77,6 +76,17 @@ public class UserActivityLogger implements Runnable{
 			userActivity.setUser_id(i+"");
 			userActivityLogger.enQueueUserActivity(userActivity);
 		}
+		
+		
+		new Thread(userActivityLogger).start();
+		System.out.println("Daemon Started!!!");
+		
+		ShutDownHook shutDownHook = new ShutDownHook();
+		new Thread(shutDownHook).start();
+		System.out.println("Hook Started!!!");
+		Runtime.getRuntime().addShutdownHook( shutDownHook );
+		
+		
 	}
 
 

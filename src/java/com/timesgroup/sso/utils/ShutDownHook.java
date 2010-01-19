@@ -7,9 +7,9 @@ public class ShutDownHook extends Thread {
 	public void run(){
 		
 		UserActivityLogger userActivityLogger=UserActivityLogger.getInstance();
-		System.out.println("ShutDownHook "+userActivityLogger.userActivityQueue.size());
+		System.out.println("ShutDownHook "+userActivityLogger.getQueueSize());
 		ITimesDataAccessManager iTimesDataAccessManager=new ITimesDataAccessManager();
-		iTimesDataAccessManager.insertUserActivity(userActivityLogger.userActivityQueue);
+		iTimesDataAccessManager.insertUserActivity(userActivityLogger);
 		
 	}
 
